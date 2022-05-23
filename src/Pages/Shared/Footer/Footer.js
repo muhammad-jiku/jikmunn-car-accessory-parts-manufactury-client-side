@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
   return (
-    <div>
+    <div className="mt-auto">
       <footer className="footer p-10 bg-base-200 text-base-content">
         <div>
           <svg
