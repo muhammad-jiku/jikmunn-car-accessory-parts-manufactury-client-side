@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function CarParts() {
+  const navigate = useNavigate();
   const [carParts, setCarParts] = useState([]);
   useEffect(() => {
     fetch('http://localhost:5000/car-parts')
@@ -8,6 +10,10 @@ function CarParts() {
       .then((data) => setCarParts(data))
       .catch((err) => console.log(err));
   });
+
+  // const handlePlaceOrder = () => {
+  // navigate(`/purchase/${carPart?._id}`);
+  // }
 
   return (
     <div className="container mx-auto my-12">
@@ -32,7 +38,12 @@ function CarParts() {
               <p>{carPart?.avaialableQuantity} pcs are available now</p>
               <p>{carPart?.description?.slice(0, 120)}</p>
               <div className="card-actions">
-                <button className="btn btn-primary">place order</button>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => navigate(`/purchase/${carPart?._id}`)}
+                >
+                  place order
+                </button>
               </div>
             </div>
           </div>
