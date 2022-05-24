@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 function CarParts() {
   const navigate = useNavigate();
+
   const [carParts, setCarParts] = useState([]);
   useEffect(() => {
     fetch('http://localhost:5000/car-parts')
@@ -24,7 +25,7 @@ function CarParts() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {carParts?.slice(2, 5)?.map((carPart) => (
           <div className="card bg-base-100 shadow-xl" key={carPart?._id}>
-            <figure>
+            <figure className="h-60">
               <img
                 src={carPart?.img}
                 alt={carPart?.itemName}

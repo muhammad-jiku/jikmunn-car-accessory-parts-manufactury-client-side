@@ -7,6 +7,7 @@ import CarPartsPurchase from './Pages/CarPartsPurchase/CarPartsPurchase';
 import Home from './Pages/Home/Home/Home';
 import Footer from './Pages/Shared/Footer/Footer';
 import Header from './Pages/Shared/Header/Header';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/purchase/:carItemId" element={<CarPartsPurchase />} />
       </Routes>
+      <ToastContainer />
       <Footer />
     </div>
   );
