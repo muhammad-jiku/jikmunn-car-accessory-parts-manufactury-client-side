@@ -1,7 +1,52 @@
 import React from 'react';
+import {
+  useSendPasswordResetEmail,
+  useSignInWithEmailAndPassword,
+} from 'react-firebase-hooks/auth';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import auth from '../../../firebase.init';
 import SocialSignIn from '../SocialSignIn/SocialSignIn';
 
 function SignIn() {
+  const navigate = useNavigate();
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    watch,
+  } = useForm();
+
+  const [signInWithEmailAndPassword, user, loading, signInerror] =
+    useSignInWithEmailAndPassword(auth);
+  const [sendPasswordResetEmail, sending, resetError] =
+    useSendPasswordResetEmail(auth);
+
+  let signInError;
+
+  const onSubmit = async (data) => {
+    console.log(data);
+    await signInWithEmailAndPassword(data?.email, data?.password);
+  };
+
+  const handlePasswordReset = async () => {
+    const email = watch('email');
+    console.log(email);
+    if (email) {
+      await sendPasswordResetEmail(email);
+      toast.success('Reset email message is sent');
+      return;
+    } else {
+      toast.error('Insert your email address please!');
+      return;
+    }
+  };
+
+  // const handleSignIn = async () => {
+  //   await signInWithEmailAndPassword();
+  // };
   return (
     <div className="hero min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -15,34 +60,104 @@ function SignIn() {
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <div className="card-body">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input
-                type="text"
-                placeholder="email"
-                className="input input-bordered"
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input
-                type="text"
-                placeholder="password"
-                className="input input-bordered"
-              />
-              <label className="label">
-                <a href="#home" className="label-text-alt link link-hover">
-                  Forgot password?
-                </a>
-              </label>
-            </div>
-            <div className="form-control mt-6">
-              <button className="btn btn-primary">Sign in</button>
-            </div>{' '}
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="form-control mb-4">
+                <label className="label">
+                  <span className="label-text text-primary font-bold">
+                    Email
+                  </span>
+                </label>
+                <input
+                  type="email"
+                  placeholder="email"
+                  className="input input-bordered input-primary"
+                  {...register('email', {
+                    required: {
+                      value: true,
+                      message: 'Email is required',
+                    },
+                    pattern: {
+                      value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                      message: 'Invalid Email',
+                    },
+                  })}
+                />
+                <p className="text-red-500 font-semibold">
+                  {errors.email?.type === 'required' && (
+                    <span>{errors?.email?.message}</span>
+                  )}
+                  {errors.email?.type === 'pattern' && (
+                    <span>{errors?.email?.message}</span>
+                  )}
+                </p>
+              </div>
+              <div className="form-control mb-4">
+                <label className="label">
+                  <span className="label-text text-primary font-bold">
+                    Password
+                  </span>
+                </label>
+                <input
+                  type="password"
+                  placeholder="password"
+                  className="input input-bordered input-primary"
+                  {...register('password', {
+                    required: {
+                      value: true,
+                      message: 'Password is required',
+                    },
+                    minLength: {
+                      value: 6,
+                      message: 'Password must be at least six letters',
+                    },
+                  })}
+                />
+                <p className="text-red-500 font-semibold">
+                  {errors.password?.type === 'required' && (
+                    <span>{errors?.password?.message}</span>
+                  )}
+                  {errors.password?.type === 'minLength' && (
+                    <span>{errors?.password?.message}</span>
+                  )}
+                </p>{' '}
+                <p className="font-bold">
+                  Forget password?
+                  <span
+                    className="text-primary cursor-pointer"
+                    onClick={handlePasswordReset}
+                  >
+                    {' '}
+                    Reset Password
+                  </span>
+                </p>
+              </div>
+              <div className="form-control mt-6">
+                {signInError}
+                <input
+                  type="submit"
+                  className="btn btn-primary text-white uppercase"
+                  value="Sign In"
+                />{' '}
+                <p className="text-center font-bold">
+                  New to CARMANIA?{' '}
+                  <span
+                    className="text-primary cursor-pointer"
+                    onClick={() => navigate('/signup')}
+                  >
+                    {' '}
+                    sign up
+                  </span>
+                </p>
+              </div>
+              {/* <div className="form-control mt-6">
+                <button
+                  className="btn btn-primary"
+                  onClick={handleSignIn}
+                >
+                  Sign in
+                </button>
+              </div>{' '} */}
+            </form>
             <div className="divider">OR</div>
             <SocialSignIn />
           </div>
