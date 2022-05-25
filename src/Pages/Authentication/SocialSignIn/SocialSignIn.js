@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import googleLogo from '../../../Images/google.png';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import { useLocation, useNavigate } from 'react-router-dom';
+import useToken from '../../../customHooks/useToken/useToken';
 
 function SocialSignIn() {
   const navigate = useNavigate();
@@ -11,6 +12,8 @@ function SocialSignIn() {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
   let from = location.state?.from?.pathname || '/';
+
+  const [token] = useToken(user);
 
   // if (error) {
   //   return (
@@ -23,7 +26,9 @@ function SocialSignIn() {
   //   return <p>Loading...</p>;
   // }
 
-  if (user) return navigate(from, { replace: true });
+  useEffect(() => {
+    if (token) return navigate(from, { replace: true });
+  }, [token, navigate, from]);
 
   const handleGoogleLogin = async () => {
     await signInWithGoogle();

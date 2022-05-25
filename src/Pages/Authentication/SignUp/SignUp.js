@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   useCreateUserWithEmailAndPassword,
   useUpdateProfile,
 } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
+import useToken from '../../../customHooks/useToken/useToken';
 import auth from '../../../firebase.init';
 import Spinner from '../../Shared/Spinner/Spinner';
 import SocialSignIn from '../SocialSignIn/SocialSignIn';
@@ -27,6 +28,16 @@ function SignUp() {
   let errorMessage;
   let from = location.state?.from?.pathname || '/';
 
+  const [token] = useToken(user);
+
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, navigate, from]);
+
+  if (loading || updating) return <Spinner />;
+
   // const handleSignUp = async () => {
   //   await createUserWithEmailAndPassword();
   // };
@@ -37,10 +48,6 @@ function SignUp() {
     await updateProfile({ displayName: data?.displayName });
     console.log('Updated name');
   };
-
-  if (loading || updating) return <Spinner />;
-
-  if (user) return navigate(from, { replace: true });
 
   return (
     <div className="hero min-h-screen bg-base-200">

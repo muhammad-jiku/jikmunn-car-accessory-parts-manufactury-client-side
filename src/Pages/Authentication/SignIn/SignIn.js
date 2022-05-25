@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 import SocialSignIn from '../SocialSignIn/SocialSignIn';
 import Spinner from '../../Shared/Spinner/Spinner';
+import useToken from '../../../customHooks/useToken/useToken';
 
 function SignIn() {
   const location = useLocation();
@@ -29,6 +30,16 @@ function SignIn() {
   let errorMessage;
   let from = location.state?.from?.pathname || '/';
 
+  const [token] = useToken(user);
+
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, navigate, from]);
+
+  if (loading || sending) return <Spinner />;
+
   const onSubmit = async (data) => {
     console.log(data);
     await signInWithEmailAndPassword(data?.email, data?.password);
@@ -47,13 +58,6 @@ function SignIn() {
     }
   };
 
-  if (loading || sending) return <Spinner />;
-
-  // const handleSignIn = async () => {
-  //   await signInWithEmailAndPassword();
-  // };
-
-  if (user) return navigate(from, { replace: true });
   return (
     <div className="hero min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
