@@ -4,11 +4,13 @@ import {
   useUpdateProfile,
 } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import Spinner from '../../Shared/Spinner/Spinner';
 import SocialSignIn from '../SocialSignIn/SocialSignIn';
 
 function SignUp() {
+  const location = useLocation();
   const navigate = useNavigate();
 
   const {
@@ -18,11 +20,12 @@ function SignUp() {
     // watch,
   } = useForm();
 
-  const [createUserWithEmailAndPassword, user, loading, error] =
+  const [createUserWithEmailAndPassword, user, loading, signUpError] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
-  let signInError;
+  let errorMessage;
+  let from = location.state?.from?.pathname || '/';
 
   // const handleSignUp = async () => {
   //   await createUserWithEmailAndPassword();
@@ -34,6 +37,10 @@ function SignUp() {
     await updateProfile({ displayName: data?.displayName });
     console.log('Updated name');
   };
+
+  if (loading || updating) return <Spinner />;
+
+  if (user) return navigate(from, { replace: true });
 
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -148,7 +155,7 @@ function SignUp() {
               </div>
 
               <div className="form-control mt-6">
-                {signInError}
+                {errorMessage}
                 <input
                   type="submit"
                   className="btn btn-primary text-white uppercase"

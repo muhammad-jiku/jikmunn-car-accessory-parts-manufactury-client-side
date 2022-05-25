@@ -9,6 +9,7 @@ import Header from './Pages/Shared/Header/Header';
 import { ToastContainer } from 'react-toastify';
 import CarPartsPurchase from './Pages/CarParts/CarParts/CarPartsPurchase/CarPartsPurchase';
 import CarParts from './Pages/CarParts/CarParts/CarParts';
+import RequiredAuth from './Pages/Authentication/RequiredAuth/RequiredAuth';
 
 function App() {
   return (
@@ -20,7 +21,14 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/car-parts" element={<CarParts />} />
-        <Route path="/purchase/:carItemId" element={<CarPartsPurchase />} />
+        <Route
+          path="/purchase/:carItemId"
+          element={
+            <RequiredAuth>
+              <CarPartsPurchase />
+            </RequiredAuth>
+          }
+        />
       </Routes>
       <ToastContainer />
       <Footer />

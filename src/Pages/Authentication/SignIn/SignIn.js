@@ -4,12 +4,14 @@ import {
   useSignInWithEmailAndPassword,
 } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 import SocialSignIn from '../SocialSignIn/SocialSignIn';
+import Spinner from '../../Shared/Spinner/Spinner';
 
 function SignIn() {
+  const location = useLocation();
   const navigate = useNavigate();
 
   const {
@@ -24,7 +26,8 @@ function SignIn() {
   const [sendPasswordResetEmail, sending, resetError] =
     useSendPasswordResetEmail(auth);
 
-  let signInError;
+  let errorMessage;
+  let from = location.state?.from?.pathname || '/';
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -44,9 +47,13 @@ function SignIn() {
     }
   };
 
+  if (loading || sending) return <Spinner />;
+
   // const handleSignIn = async () => {
   //   await signInWithEmailAndPassword();
   // };
+
+  if (user) return navigate(from, { replace: true });
   return (
     <div className="hero min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -132,7 +139,7 @@ function SignIn() {
                 </p>
               </div>
               <div className="form-control mt-6">
-                {signInError}
+                {errorMessage}
                 <input
                   type="submit"
                   className="btn btn-primary text-white uppercase"
