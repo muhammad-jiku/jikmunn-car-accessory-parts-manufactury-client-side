@@ -33,6 +33,9 @@ function Header() {
               <Link to="/blog">Blog</Link>
             </li>
             <li>
+              <Link to="/car-parts">Accessories</Link>
+            </li>
+            <li>
               <Link to="/signin">Sign in</Link>
             </li>
             <li>
@@ -55,6 +58,9 @@ function Header() {
 
           <li>
             <Link to="/blog">Blog</Link>
+          </li>
+          <li>
+            <Link to="/car-parts">Accessories</Link>
           </li>
           <li>
             <Link to="/signin">Sign in</Link>

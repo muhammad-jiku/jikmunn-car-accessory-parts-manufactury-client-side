@@ -3,11 +3,12 @@ import { Route, Routes } from 'react-router-dom';
 import SignIn from './Pages/Authentication/SignIn/SignIn';
 import SignUp from './Pages/Authentication/SignUp/SignUp';
 import Blog from './Pages/Blog/Blog';
-import CarPartsPurchase from './Pages/CarPartsPurchase/CarPartsPurchase';
 import Home from './Pages/Home/Home/Home';
 import Footer from './Pages/Shared/Footer/Footer';
 import Header from './Pages/Shared/Header/Header';
 import { ToastContainer } from 'react-toastify';
+import CarPartsPurchase from './Pages/CarParts/CarParts/CarPartsPurchase/CarPartsPurchase';
+import CarParts from './Pages/CarParts/CarParts/CarParts';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/car-parts" element={<CarParts />} />
         <Route path="/purchase/:carItemId" element={<CarPartsPurchase />} />
       </Routes>
       <ToastContainer />
