@@ -1,7 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase.init';
+import { signOut } from 'firebase/auth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
 
 function Header() {
+  const [user, loading, error] = useAuthState(auth);
+
+  const signingOut = () => {
+    signOut(auth);
+  };
+
   return (
     <div className="navbar bg-neutral">
       <div className="navbar-start">
@@ -35,15 +46,36 @@ function Header() {
             <li>
               <Link to="/car-parts">Accessories</Link>
             </li>
-            <li>
-              <Link to="/signin">Sign in</Link>
-            </li>
-            <li>
-              <Link to="/signup">Sign up</Link>
-            </li>
-            <li>
-              <button className="btn btn-primary">Sign out</button>
-            </li>
+            {user ? (
+              <>
+                {' '}
+                <li className="mr-2 font-bold">
+                  <p>
+                    {' '}
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      className="text-primary"
+                      // size="6x"
+                    />{' '}
+                    {user ? user?.displayName : user?.email}
+                  </p>
+                </li>
+                <li>
+                  <button className="btn btn-primary" onClick={signingOut}>
+                    Sign out
+                  </button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to="/signin">Sign in</Link>
+                </li>
+                <li>
+                  <Link to="/signup">Sign up</Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost normal-case text-xl">
@@ -62,15 +94,36 @@ function Header() {
           <li>
             <Link to="/car-parts">Accessories</Link>
           </li>
-          <li>
-            <Link to="/signin">Sign in</Link>
-          </li>
-          <li>
-            <Link to="/signup">Sign up</Link>
-          </li>
-          <li>
-            <button className="btn btn-primary">Sign out</button>
-          </li>
+          {user ? (
+            <>
+              {' '}
+              <li className="mr-2 font-bold">
+                <p>
+                  {' '}
+                  <FontAwesomeIcon
+                    icon={faUser}
+                    className="text-primary"
+                    // size="6x"
+                  />{' '}
+                  {user ? user?.displayName : user?.email}
+                </p>
+              </li>
+              <li>
+                <button className="btn btn-primary" onClick={signingOut}>
+                  Sign out
+                </button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/signin">Sign in</Link>
+              </li>
+              <li>
+                <Link to="/signup">Sign up</Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </div>
