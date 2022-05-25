@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import CarPartsPurchase from './Pages/CarParts/CarParts/CarPartsPurchase/CarPartsPurchase';
 import CarParts from './Pages/CarParts/CarParts/CarParts';
 import RequiredAuth from './Pages/Authentication/RequiredAuth/RequiredAuth';
+import NotFound from './Pages/Shared/NotFound/NotFound';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             </RequiredAuth>
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <ToastContainer />
       <Footer />

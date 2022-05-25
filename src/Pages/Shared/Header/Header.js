@@ -13,6 +13,17 @@ function Header() {
     signOut(auth);
   };
 
+  if (loading) {
+    return;
+  }
+  if (error) {
+    return (
+      <div>
+        <p>Error: {error}</p>
+      </div>
+    );
+  }
+
   return (
     <div className="navbar bg-neutral">
       <div className="navbar-start">
