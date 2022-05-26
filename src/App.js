@@ -7,7 +7,7 @@ import Home from './Pages/Home/Home/Home';
 import Footer from './Pages/Shared/Footer/Footer';
 import Header from './Pages/Shared/Header/Header';
 import { ToastContainer } from 'react-toastify';
-import CarPartsPurchase from './Pages/CarParts/CarParts/CarPartsPurchase/CarPartsPurchase';
+import CarPartsPurchase from './Pages/CarParts/CarPartsPurchase/CarPartsPurchase';
 import CarParts from './Pages/CarParts/CarParts/CarParts';
 import RequiredAuth from './Pages/Authentication/RequiredAuth/RequiredAuth';
 import NotFound from './Pages/Shared/NotFound/NotFound';
