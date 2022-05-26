@@ -7,8 +7,15 @@ import { toast } from 'react-toastify';
 function CarPartsPurchaseModal({ carItemPurchase, setCarItemPurchase }) {
   const [user] = useAuthState(auth);
 
-  const { _id, itemName, minQuantity, avaialableQuantity, price } =
-    carItemPurchase;
+  const {
+    _id,
+    // img,
+    price,
+    itemName,
+    minQuantity,
+    // description,
+    avaialableQuantity,
+  } = carItemPurchase;
   const {
     register,
     formState: { errors },
@@ -44,10 +51,19 @@ function CarPartsPurchaseModal({ carItemPurchase, setCarItemPurchase }) {
       orderName: itemName,
       user: email,
       userName: displayName,
-      // avaialableQuantity: remainingQuantity,
-      // minQuantity: minQuantity,
+      address: address,
       quantity: quantity,
       price: totalPrice,
+    };
+
+    const updatedCarPartDetails = {
+      // _id,
+      // img,
+      // price,
+      // itemName,
+      // minQuantity,
+      // description,
+      avaialableQuantity: remainingQuantity,
     };
     fetch('http://localhost:5000/order', {
       method: 'POST',
@@ -60,6 +76,14 @@ function CarPartsPurchaseModal({ carItemPurchase, setCarItemPurchase }) {
       .then((data) => {
         toast.success(`You purchased ${itemName} successfully!`);
         console.log(data);
+        fetch(`http://localhost:5000/car-parts/${_id}`, {
+          method: 'PUT',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(updatedCarPartDetails),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data))
+          .catch((err) => console.log(err));
         // to close the modal
         setCarItemPurchase(null);
       });
