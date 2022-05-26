@@ -15,7 +15,7 @@ function CarPartsPurchase() {
   }, [carItemId]);
   return (
     <div className="p-10 bg-base-300">
-      {console.log(carItem)}
+      {/* {console.log(carItem)} */}
 
       <div className="flex flex-col lg:flex-row items-center bg-base-100 p-10">
         <div className="flex-1">
@@ -58,7 +58,10 @@ function CarPartsPurchase() {
         </div>
       </div>
       {carItemPurchase && (
-        <CarPartsPurchaseModal carItemPurchase={carItemPurchase} />
+        <CarPartsPurchaseModal
+          carItemPurchase={carItemPurchase}
+          setCarItemPurchase={setCarItemPurchase}
+        />
       )}
     </div>
   );

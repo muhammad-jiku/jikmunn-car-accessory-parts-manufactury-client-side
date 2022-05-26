@@ -18,7 +18,7 @@ function SignUp() {
     register,
     formState: { errors },
     handleSubmit,
-    // watch,
+    watch,
   } = useForm();
 
   const [createUserWithEmailAndPassword, user, loading, signUpError] =
@@ -42,11 +42,16 @@ function SignUp() {
   //   await createUserWithEmailAndPassword();
   // };
 
-  const onSubmit = async (data) => {
-    console.log(data);
-    await createUserWithEmailAndPassword(data?.email, data?.password);
-    await updateProfile({ displayName: data?.displayName });
-    console.log('Updated name');
+  const onSubmit = async () => {
+    // console.log(data);
+    const displayName = watch('displayName').toUpperCase();
+    const email = watch('email');
+    const password = watch('password');
+    console.log(email, password);
+
+    await createUserWithEmailAndPassword(email, password);
+    await updateProfile({ displayName: displayName });
+    console.log('Updated name', displayName);
   };
 
   return (

@@ -40,9 +40,11 @@ function SignIn() {
 
   if (loading || sending) return <Spinner />;
 
-  const onSubmit = async (data) => {
-    console.log(data);
-    await signInWithEmailAndPassword(data?.email, data?.password);
+  const onSubmit = async () => {
+    const email = watch('email');
+    const password = watch('password');
+    console.log(email, password);
+    await signInWithEmailAndPassword(email, password);
   };
 
   const handlePasswordReset = async () => {

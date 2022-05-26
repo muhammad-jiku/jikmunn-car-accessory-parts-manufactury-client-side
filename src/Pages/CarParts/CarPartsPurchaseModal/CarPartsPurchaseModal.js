@@ -1,19 +1,68 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase.init';
+import { toast } from 'react-toastify';
 
-function CarPartsPurchaseModal({ carItemPurchase }) {
+function CarPartsPurchaseModal({ carItemPurchase, setCarItemPurchase }) {
+  const [user] = useAuthState(auth);
+
   const { _id, itemName, minQuantity, avaialableQuantity, price } =
     carItemPurchase;
   const {
     register,
     formState: { errors },
     handleSubmit,
-    // watch,
+    watch,
+    getValues,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    //    await signInWithEmailAndPassword(data?.email, data?.password);
+  const onSubmit = () => {
+    // e.preventDefault();
+    // console.log(data);
+    const displayName = watch('displayName').toUpperCase();
+    const email = watch('email');
+    const address = watch('address').toUpperCase();
+    const phone = watch('phone');
+    const itemName = watch('itemName');
+    const quantity = parseInt(watch('quantity'));
+    const remainingQuantity = parseInt(avaialableQuantity) - quantity;
+    const price = parseInt(watch('price'));
+    const totalPrice = quantity * price;
+    console.log({
+      displayName,
+      email,
+      address,
+      phone,
+      itemName,
+      quantity,
+      price,
+    });
+
+    const order = {
+      orderId: _id,
+      orderName: itemName,
+      user: email,
+      userName: displayName,
+      // avaialableQuantity: remainingQuantity,
+      // minQuantity: minQuantity,
+      quantity: quantity,
+      price: totalPrice,
+    };
+    fetch('http://localhost:5000/order', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(order),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success(`You purchased ${itemName} successfully!`);
+        console.log(data);
+        // to close the modal
+        setCarItemPurchase(null);
+      });
   };
   // console.log(carItemPurchase);
   return (
@@ -27,6 +76,9 @@ function CarPartsPurchaseModal({ carItemPurchase }) {
           >
             ✕
           </label>
+          <h1 className="text-2xl text-secondary text-center p-4">
+            Order for {itemName}
+          </h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control mb-4">
               {/* <label className="label">
@@ -34,27 +86,32 @@ function CarPartsPurchaseModal({ carItemPurchase }) {
               </label> */}
               <input
                 type="text"
-                placeholder="Name"
+                // placeholder="Name"
+                // defaultValue={user?.displayName}
+                value={user?.displayName}
                 className="input input-bordered input-primary"
                 {...register('displayName', {
-                  required: {
-                    value: true,
-                    message: 'Name is required',
-                  },
-                  maxLength: {
-                    value: 30,
-                    message: 'Name can not be more than 30 letters',
-                  },
+                  // required: {
+                  //   value: true,
+                  //   message: 'Name is required',
+                  // },
+                  // maxLength: {
+                  //   value: 30,
+                  //   message: 'Name can not be more than 30 letters',
+                  // },
                 })}
+                readOnly
+                required
+                // disabled
               />
-              <p className="text-red-500 font-semibold">
+              {/* <p className="text-red-500 font-semibold">
                 {errors?.displayName?.type === 'required' && (
                   <span>{errors?.displayName?.message}</span>
                 )}
                 {errors?.displayName?.type === 'maxLength' && (
                   <span>{errors?.displayName?.message}</span>
                 )}
-              </p>
+              </p> */}
             </div>
             <div className="form-control mb-4">
               {/* <label className="label">
@@ -62,27 +119,32 @@ function CarPartsPurchaseModal({ carItemPurchase }) {
               </label> */}
               <input
                 type="email"
-                placeholder="email"
+                // placeholder="email"
+                // defaultValue={user?.email}
+                value={user?.email}
                 className="input input-bordered input-primary"
                 {...register('email', {
-                  required: {
-                    value: true,
-                    message: 'Email is required',
-                  },
-                  pattern: {
-                    value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
-                    message: 'Invalid Email',
-                  },
+                  // required: {
+                  //   value: true,
+                  //   message: 'Email is required',
+                  // },
+                  // pattern: {
+                  //   value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                  //   message: 'Invalid Email',
+                  // },
                 })}
+                readOnly
+                required
+                // disabled
               />
-              <p className="text-red-500 font-semibold">
+              {/* <p className="text-red-500 font-semibold">
                 {errors.email?.type === 'required' && (
                   <span>{errors?.email?.message}</span>
                 )}
                 {errors.email?.type === 'pattern' && (
                   <span>{errors?.email?.message}</span>
                 )}
-              </p>
+              </p> */}
             </div>
             <div className="form-control mb-4">
               {/* <label className="label">
@@ -150,25 +212,27 @@ function CarPartsPurchaseModal({ carItemPurchase }) {
               </label> */}
               <input
                 type="text"
+                // defaultValue={itemName}
                 value={itemName}
                 className="input input-bordered input-primary"
-                // {...register('itemName', {
-                //   required: {
-                //     value: true,
-                //     message: 'Item is required',
-                //   },
-                // })}
+                {...register('itemName', {
+                  //   required: {
+                  //     value: true,
+                  //     message: 'Item is required',
+                  //   },
+                })}
                 readOnly
-                disabled
+                required
+                // disabled
               />
-              <p className="text-red-500 font-semibold">
-                {/* {errors?.itemName?.type === 'required' && (
+              {/* <p className="text-red-500 font-semibold">
+                {errors?.itemName?.type === 'required' && (
                   <span>{errors?.itemName?.message}</span>
-                )} */}
-                {/* {errors?.displayName?.type === 'maxLength' && (
+                )}
+                {errors?.displayName?.type === 'maxLength' && (
                   <span>{errors?.displayName?.message}</span>
-                )} */}
-              </p>
+                )}
+              </p> */}
             </div>
             <div className="form-control mb-4">
               {/* <label className="label">
@@ -215,14 +279,22 @@ function CarPartsPurchaseModal({ carItemPurchase }) {
               </label> */}
               <input
                 type="number"
-                placeholder="Price"
+                // placeholder="Price"
+                value={
+                  getValues('quantity')
+                    ? parseInt(price) * parseInt(getValues('quantity'))
+                    : parseInt(price)
+                }
                 className="input input-bordered input-primary"
-                {...register('totalPrice', {
+                {...register('price', {
                   required: {
                     value: true,
                     message: 'Price is required',
                   },
                 })}
+                readOnly
+                required
+                // disabled
               />
               <p className="text-red-500 font-semibold">
                 {errors.totalPrice?.type === 'required' && (

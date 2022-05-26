@@ -18,7 +18,7 @@ function CarParts() {
 
   return (
     <div className="container mx-auto my-12">
-      {console.log(carParts)}
+      {/* {console.log(carParts)} */}
       <h1 className="text-center text-3xl text-success my-6">
         Brand Building Car Parts
       </h1>
