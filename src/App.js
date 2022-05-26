@@ -9,6 +9,14 @@ import Header from './Pages/Shared/Header/Header';
 import { ToastContainer } from 'react-toastify';
 import CarPartsPurchase from './Pages/CarParts/CarPartsPurchase/CarPartsPurchase';
 import CarParts from './Pages/CarParts/CarParts/CarParts';
+import Dashboard from './Pages/DashBoard/DashBoard/DashBoard';
+import MyProfile from './Pages/DashBoard/MyProfile/MyProfile';
+import MyOrders from './Pages/DashBoard/User/MyOrders/MyOrders';
+import AddReview from './Pages/DashBoard/User/AddReview/AddReview';
+import AddCartItem from './Pages/DashBoard/Admin/AddCarItem/AddCarItem';
+import ManageCarItems from './Pages/DashBoard/Admin/ManageCarItems/ManageCarItems';
+import ManageAllOrders from './Pages/DashBoard/Admin/ManageAllOrders/ManageAllOrders';
+import MakeAdmin from './Pages/DashBoard/Admin/MakeAdmin/MakeAdmin';
 import RequiredAuth from './Pages/Authentication/RequiredAuth/RequiredAuth';
 import NotFound from './Pages/Shared/NotFound/NotFound';
 
@@ -30,6 +38,22 @@ function App() {
             </RequiredAuth>
           }
         />
+        <Route
+          path="/dashboard"
+          element={
+            <RequiredAuth>
+              <Dashboard />
+            </RequiredAuth>
+          }
+        >
+          <Route index element={<MyProfile />} />
+          <Route path="myorders" element={<MyOrders />} />
+          <Route path="addreview" element={<AddReview />} />
+          <Route path="addcaritem" element={<AddCartItem />} />
+          <Route path="managecaritems" element={<ManageCarItems />} />
+          <Route path="manageallorders" element={<ManageAllOrders />} />
+          <Route path="makeadmin" element={<MakeAdmin />} />
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
       <ToastContainer />
