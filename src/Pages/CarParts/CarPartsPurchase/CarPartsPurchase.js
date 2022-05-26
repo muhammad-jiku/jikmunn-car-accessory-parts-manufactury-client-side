@@ -13,6 +13,7 @@ function CarPartsPurchase() {
       .then((data) => setCarItem(data))
       .catch((err) => console.log(err));
   }, [carItemId, carItem]);
+
   return (
     <div className="p-10 bg-base-300">
       {/* {console.log(carItem)} */}

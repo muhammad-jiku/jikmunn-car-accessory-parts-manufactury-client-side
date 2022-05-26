@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
+import Spinner from '../../Shared/Spinner/Spinner';
 
 function CarParts() {
   const navigate = useNavigate();
 
-  const [carParts, setCarParts] = useState([]);
-  useEffect(() => {
-    fetch('http://localhost:5000/car-parts')
-      .then((res) => res.json())
-      .then((data) => setCarParts(data))
-      .catch((err) => console.log(err));
-  });
+  // const [carParts, setCarParts] = useState([]);
+  // useEffect(() => {
+  //   fetch('http://localhost:5000/car-parts')
+  //     .then((res) => res.json())
+  //     .then((data) => setCarParts(data))
+  //     .catch((err) => console.log(err));
+  // });
+
+  const { data: carParts, isLoading } = useQuery('carParts', () =>
+    fetch('http://localhost:5000/car-parts').then((res) => res.json())
+  );
+
+  if (isLoading) return <Spinner />;
 
   // const handlePlaceOrder = () => {
   // navigate(`/purchase/${carPart?._id}`);
