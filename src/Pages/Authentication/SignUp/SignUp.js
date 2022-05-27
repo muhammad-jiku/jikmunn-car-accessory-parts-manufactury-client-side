@@ -32,9 +32,10 @@ function SignUp() {
 
   useEffect(() => {
     if (token) {
+      console.log(user);
       navigate(from, { replace: true });
     }
-  }, [token, navigate, from]);
+  }, [token, user, navigate, from]);
 
   if (loading || updating) return <Spinner />;
 

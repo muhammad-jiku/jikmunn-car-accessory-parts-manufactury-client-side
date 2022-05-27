@@ -27,8 +27,11 @@ function SocialSignIn() {
   // }
 
   useEffect(() => {
-    if (token) return navigate(from, { replace: true });
-  }, [token, navigate, from]);
+    if (token) {
+      console.log(user);
+      navigate(from, { replace: true });
+    }
+  }, [token, user, navigate, from]);
 
   const handleGoogleLogin = async () => {
     await signInWithGoogle();
