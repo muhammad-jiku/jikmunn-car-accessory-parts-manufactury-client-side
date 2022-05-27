@@ -1,7 +1,30 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 
-function AdminRow({ user, idx }) {
-  const { _id, email } = user;
+function AdminRow({ user, idx, refetch }) {
+  const { _id, email, role } = user;
+  const makeAdmin = () => {
+    fetch(`http://localhost:5000/user/admin/${email}`, {
+      method: 'PUT',
+      headers: {
+        authorization: `Bearer ${localStorage?.getItem('accessToken')}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 403) {
+          toast.error('Failed to make an admin');
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        if (data?.modifiedCount > 0) {
+          refetch();
+          toast.success(`${email} successfully included as admin`);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <tr>
       <th>{idx + 1}</th>
@@ -18,13 +41,23 @@ function AdminRow({ user, idx }) {
       <th>{email}</th>
       {/* <th>{address}</th> */}
       <th>
-        <label
-          htmlFor="delete-modal"
-          className="btn btn-error text-white font-bold"
-          //   onClick={() => setConfirmDelteModal(doctor)}
-        >
-          Delete
-        </label>
+        {role === 'admin' ? (
+          <>
+            <button className="btn font-bold uppercase text-white" disabled>
+              Admin
+            </button>{' '}
+            <button className="btn font-bold uppercase text-white ml-2">
+              Remove Admin
+            </button>
+          </>
+        ) : (
+          <button
+            className="btn font-bold uppercase text-white"
+            onClick={makeAdmin}
+          >
+            Make Admin
+          </button>
+        )}
       </th>
     </tr>
   );

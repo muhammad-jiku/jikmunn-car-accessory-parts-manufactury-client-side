@@ -1,14 +1,30 @@
 import React, { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import AdminRow from './AdminRow';
+import Spinner from '../../../Shared/Spinner/Spinner';
 
 function MakeAdmin() {
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    fetch('http://localhost:5000/users')
-      .then((res) => res.json())
-      .then((data) => setUsers(data))
-      .catch((err) => console.log(err));
-  }, []);
+  const {
+    data: users,
+    isLoading,
+    refetch,
+  } = useQuery('users', () =>
+    fetch('http://localhost:5000/users', {
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${localStorage?.getItem('accessToken')}`,
+      },
+    }).then((res) => res.json())
+  );
+  // const [users, setUsers] = useState([]);
+  // useEffect(() => {
+  //   fetch('http://localhost:5000/users')
+  //     .then((res) => res.json())
+  //     .then((data) => setUsers(data))
+  //     .catch((err) => console.log(err));
+  // }, []);
+
+  if (isLoading) return <Spinner />;
   return (
     <div>
       MakeAdmin
@@ -32,6 +48,7 @@ function MakeAdmin() {
                 key={user?._id}
                 user={user}
                 idx={idx}
+                refetch={refetch}
                 // setConfirmDelteModal={setConfirmDelteModal}
               />
             ))}

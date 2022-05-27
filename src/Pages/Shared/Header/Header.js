@@ -49,7 +49,7 @@ function Header() {
                 className="text-primary"
                 // size="6x"
               />{' '}
-              {user ? user?.displayName : user?.email}
+              {user?.displayName || user?.email}
             </p>
           </li>
           <li>
