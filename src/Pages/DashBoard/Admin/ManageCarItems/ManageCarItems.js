@@ -7,7 +7,7 @@ function ManageCarItems() {
       .then((res) => res.json())
       .then((data) => setCarItems(data))
       .catch((err) => console.log(err));
-  });
+  }, []);
   return (
     <div>
       ManageCarItems

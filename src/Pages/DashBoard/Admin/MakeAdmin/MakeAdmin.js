@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 function MakeAdmin() {
-  return <div>MakeAdmin</div>;
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    fetch('http://localhost:5000/users')
+      .then((res) => res.json())
+      .then((data) => setUsers(data))
+      .catch((err) => console.log(err));
+  }, []);
+  return (
+    <div>
+      MakeAdmin
+      {console.log(users)}
+    </div>
+  );
 }
 
 export default MakeAdmin;
