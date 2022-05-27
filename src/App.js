@@ -19,6 +19,7 @@ import ManageAllOrders from './Pages/DashBoard/Admin/ManageAllOrders/ManageAllOr
 import MakeAdmin from './Pages/DashBoard/Admin/MakeAdmin/MakeAdmin';
 import RequiredAuth from './Pages/Authentication/RequiredAuth/RequiredAuth';
 import NotFound from './Pages/Shared/NotFound/NotFound';
+import RequiredAdmin from './Pages/Authentication/RequiredAdmin/RequiredAdmin';
 
 function App() {
   return (
@@ -49,10 +50,38 @@ function App() {
           <Route index element={<MyProfile />} />
           <Route path="myorders" element={<MyOrders />} />
           <Route path="addreview" element={<AddReview />} />
-          <Route path="addcaritem" element={<AddCartItem />} />
-          <Route path="managecaritems" element={<ManageCarItems />} />
-          <Route path="manageallorders" element={<ManageAllOrders />} />
-          <Route path="makeadmin" element={<MakeAdmin />} />
+          <Route
+            path="addcaritem"
+            element={
+              <RequiredAdmin>
+                <AddCartItem />
+              </RequiredAdmin>
+            }
+          />
+          <Route
+            path="managecaritems"
+            element={
+              <RequiredAdmin>
+                <ManageCarItems />
+              </RequiredAdmin>
+            }
+          />
+          <Route
+            path="manageallorders"
+            element={
+              <RequiredAdmin>
+                <ManageAllOrders />
+              </RequiredAdmin>
+            }
+          />
+          <Route
+            path="makeadmin"
+            element={
+              <RequiredAdmin>
+                <MakeAdmin />
+              </RequiredAdmin>
+            }
+          />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
