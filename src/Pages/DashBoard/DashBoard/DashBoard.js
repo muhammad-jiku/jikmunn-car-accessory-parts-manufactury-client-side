@@ -4,19 +4,29 @@ import { Link, Outlet } from 'react-router-dom';
 function DashBoard() {
   return (
     <div className="drawer drawer-mobile">
-      <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col items-center justify-center">
+      <input
+        id="dashboard-drawer-sidebar"
+        type="checkbox"
+        className="drawer-toggle"
+      />
+      <div className="drawer-content bg-base-300">
+        <h1 className="text-2xl uppercase text-primary">
+          here is your dashboard
+        </h1>
         {/* <!-- Page content here --> */}
         <Outlet />
-        <label
-          htmlFor="my-drawer-2"
+        {/* <label
+          htmlFor="dashboard-drawer-sidebar"
           className="btn btn-primary drawer-button lg:hidden"
         >
           Open drawer
-        </label>
+        </label> */}
       </div>
       <div className="drawer-side">
-        <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
+        <label
+          htmlFor="dashboard-drawer-sidebar"
+          className="drawer-overlay"
+        ></label>
         <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
           {/* <!-- Sidebar content here --> */}
           <li>
