@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase.init';
+import useAdmin from '../../../customHooks/useAdmin/useAdmin';
 
 function DashBoard() {
+  const [user] = useAuthState(auth);
+  const [admin] = useAdmin(user);
   return (
     <div className="drawer drawer-mobile">
       <input
@@ -33,24 +38,32 @@ function DashBoard() {
             {' '}
             <Link to="/dashboard">My Profile</Link>
           </li>
-          <li>
-            <Link to="/dashboard/myorders">My Orders</Link>
-          </li>
-          <li>
-            <Link to="/dashboard/addreview">Add Review</Link>
-          </li>
-          <li>
-            <Link to="/dashboard/addcaritem">Add New Car Item</Link>
-          </li>
-          <li>
-            <Link to="/dashboard/managecaritems">Manage Car Items</Link>
-          </li>
-          <li>
-            <Link to="/dashboard/manageallorders">Manage All Orders</Link>
-          </li>
-          <li>
-            <Link to="/dashboard/makeadmin">Make Admin</Link>
-          </li>
+
+          {admin ? (
+            <>
+              <li>
+                <Link to="/dashboard/addcaritem">Add New Car Item</Link>
+              </li>
+              <li>
+                <Link to="/dashboard/managecaritems">Manage Car Items</Link>
+              </li>
+              <li>
+                <Link to="/dashboard/manageallorders">Manage All Orders</Link>
+              </li>
+              <li>
+                <Link to="/dashboard/makeadmin">Make Admin</Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/dashboard/myorders">My Orders</Link>
+              </li>
+              <li>
+                <Link to="/dashboard/addreview">Add Review</Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </div>
