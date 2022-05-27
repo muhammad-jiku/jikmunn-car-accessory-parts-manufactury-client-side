@@ -28,14 +28,17 @@ function ManageCarItems() {
           </thead>
           <tbody>
             {/* <!-- row 1 --> */}
-            {carItems?.map((carItem, idx) => (
-              <CarItemsRow
-                key={carItem?._id}
-                carItem={carItem}
-                idx={idx}
-                // setConfirmDelteModal={setConfirmDelteModal}
-              />
-            ))}
+            {carItems
+              ?.slice(0)
+              ?.reverse()
+              ?.map((carItem, idx) => (
+                <CarItemsRow
+                  key={carItem?._id}
+                  carItem={carItem}
+                  idx={idx}
+                  // setConfirmDelteModal={setConfirmDelteModal}
+                />
+              ))}
           </tbody>
         </table>
       </div>{' '}

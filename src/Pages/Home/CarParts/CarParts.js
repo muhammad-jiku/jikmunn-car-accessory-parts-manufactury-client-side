@@ -31,7 +31,7 @@ function CarParts() {
         Brand Building Car Parts
       </h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {carParts?.slice(2, 5)?.map((carPart) => (
+        {carParts?.slice(-3)?.map((carPart) => (
           <div className="card bg-base-100 shadow-xl" key={carPart?._id}>
             <figure className="h-60">
               <img
