@@ -266,7 +266,8 @@ function CarPartsPurchaseModal({ carItemPurchase, setCarItemPurchase }) {
               </label> */}
               <input
                 type="number"
-                placeholder="Quantity"
+                // placeholder="Quantity"
+                defaultValue={minQuantity}
                 className="input input-bordered input-primary"
                 {...register('quantity', {
                   required: {

@@ -37,7 +37,7 @@ function CarItemsRow({ carItem, idx }) {
       <th>{price}</th> */}
       <th>
         <label
-          htmlFor="delete-modal"
+          // htmlFor="delete-modal"
           className="btn btn-error text-white font-bold"
           //   onClick={() => setConfirmDelteModal(doctor)}
         >

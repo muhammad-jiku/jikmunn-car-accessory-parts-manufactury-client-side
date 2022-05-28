@@ -1,7 +1,13 @@
 import React from 'react';
 
-function OrderRow({ order, idx }) {
+function OrderRow({ order, idx, setConfirmDeleteOrderModal }) {
   const { _id, orderId, orderName, quantity, price, user, address } = order;
+
+  // const handleDelete = (email) => {
+  //   fetch(`http://localhost:5000/order/${email}`, {
+  //     method: 'DELETE'
+  //   });
+  // }
 
   return (
     <tr>
@@ -26,11 +32,18 @@ function OrderRow({ order, idx }) {
       <th>{address}</th>
       <th>
         <label
-          htmlFor="delete-modal"
-          className="btn btn-error text-white font-bold"
+          // htmlFor="confirm-modal"
+          className="btn btn-success text-white font-bold mr-2"
           //   onClick={() => setConfirmDelteModal(doctor)}
         >
-          Delete
+          Pay
+        </label>
+        <label
+          htmlFor="confirm-modal"
+          className="btn btn-error text-white font-bold"
+          onClick={() => setConfirmDeleteOrderModal(order)}
+        >
+          Cancel
         </label>
       </th>
     </tr>

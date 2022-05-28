@@ -16,16 +16,16 @@ function AddReview() {
   } = useForm();
 
   const onSubmit = () => {
-    const displayName = watch('displayName');
+    const displayName = watch('displayName').toUpperCase();
     const rating = parseInt(watch('rating'));
     const review = watch('review');
-    // const img = watch('img');
+    const img = watch('img');
 
     const reviews = {
       displayName: displayName,
       rating: rating,
       review: review,
-      // img: img,
+      img: img,
     };
 
     //  const formData = new FormData();
@@ -165,26 +165,28 @@ function AddReview() {
           </p>
         </div>
         {/* doctors image */}
-        {/* <div className="form-control mb-4">
+        <div className="form-control mb-4">
           <label className="label">
             <span className="label-text text-primary font-bold">Image</span>
           </label>
           <input
             type="text"
-            value={user?.photoURL}
+            value={
+              user?.photoURL || 'https://i.ibb.co/mF39255/icon-256x256.png'
+            }
             className="input input-bordered input-primary"
             {...register('img', {
               required: { value: true, message: 'Image is required' },
             })}
             readOnly
-            required
+            // required
           />
-          <p className="text-red-500 font-semibold">
+          {/* <p className="text-red-500 font-semibold">
             {errors?.img?.type === 'required' && (
               <span>{errors?.img?.message}</span>
             )}
-          </p>
-        </div> */}
+          </p> */}
+        </div>
         {/* submit button */}
         <div className="form-control mt-6">
           {/* {signInError} */}

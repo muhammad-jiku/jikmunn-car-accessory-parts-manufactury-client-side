@@ -16,3 +16,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* slick-track {
+  display: flex !important;
+} */
+
+/* .slick-slide {
+  height: auto;
+} */
+
+  /* the slides */
+   /* .slick-slide {
+      margin: 0 5px;
+      height: auto;
+  } */
+
+  /* the parent */
+  /* .slick-list {
+      margin: 0 -5px;
+  }  */

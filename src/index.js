@@ -6,6 +6,12 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import './index.css';
 import 'react-toastify/dist/ReactToastify.css';
+// import '~slick-carousel/slick/slick.css';
+// import '~slick-carousel/slick/slick-theme.css';
+// import 'slick-carousel/slick/slick.css';
+// import 'slick-carousel/slick/slick-theme.css';
+// // css
+// import 'swiper/css/swiper.css';
 
 // Create a client
 const queryClient = new QueryClient();
