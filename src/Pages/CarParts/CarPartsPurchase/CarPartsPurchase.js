@@ -8,7 +8,7 @@ function CarPartsPurchase() {
   const [carItemPurchase, setCarItemPurchase] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/car-parts/${carItemId}`)
+    fetch(`https://jikmunn-carmania.herokuapp.com/car-parts/${carItemId}`)
       .then((res) => res.json())
       .then((data) => setCarItem(data))
       .catch((err) => console.log(err));

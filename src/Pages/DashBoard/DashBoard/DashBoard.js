@@ -38,8 +38,7 @@ function DashBoard() {
             {' '}
             <Link to="/dashboard">My Profile</Link>
           </li>
-
-          {admin ? (
+          {admin && (
             <>
               <li>
                 <Link to="/dashboard/addcaritem">Add New Car Item</Link>
@@ -54,7 +53,9 @@ function DashBoard() {
                 <Link to="/dashboard/makeadmin">Make Admin</Link>
               </li>
             </>
-          ) : (
+          )}
+
+          {!admin && (
             <>
               <li>
                 <Link to="/dashboard/myorders">My Orders</Link>

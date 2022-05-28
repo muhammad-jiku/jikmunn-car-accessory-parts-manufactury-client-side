@@ -39,7 +39,7 @@ function AddCarItem() {
           };
           // send accessory details to database
           console.log('accessory details ', accessory);
-          fetch(`http://localhost:5000/car-part`, {
+          fetch(`https://jikmunn-carmania.herokuapp.com/car-part`, {
             method: 'POST',
             headers: {
               authorization: `Bearer ${localStorage?.getItem('accessToken')}`,

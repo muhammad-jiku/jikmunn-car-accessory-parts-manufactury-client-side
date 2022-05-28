@@ -65,7 +65,7 @@ function CarPartsPurchaseModal({ carItemPurchase, setCarItemPurchase }) {
       // description,
       avaialableQuantity: remainingQuantity,
     };
-    fetch('http://localhost:5000/order', {
+    fetch('https://jikmunn-carmania.herokuapp.com/order', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -76,7 +76,7 @@ function CarPartsPurchaseModal({ carItemPurchase, setCarItemPurchase }) {
       .then((data) => {
         toast.success(`You purchased ${itemName} successfully!`);
         console.log(data);
-        fetch(`http://localhost:5000/car-parts/${_id}`, {
+        fetch(`https://jikmunn-carmania.herokuapp.com/car-parts/${_id}`, {
           method: 'PUT',
           headers: { 'content-type': 'application/json' },
           body: JSON.stringify(updatedCarPartDetails),

@@ -7,14 +7,16 @@ function CarParts() {
   const navigate = useNavigate();
 
   const { data: carParts, isLoading } = useQuery('carParts', () =>
-    fetch('http://localhost:5000/car-parts').then((res) => res.json())
+    fetch('https://jikmunn-carmania.herokuapp.com/car-parts').then((res) =>
+      res.json()
+    )
   );
 
   if (isLoading) return <Spinner />;
 
   // const [carParts, setCarParts] = useState([]);
   // useEffect(() => {
-  //   fetch('http://localhost:5000/car-parts')
+  //   fetch('https://jikmunn-carmania.herokuapp.com/car-parts')
   //     .then((res) => res.json())
   //     .then((data) => setCarParts(data))
   //     .catch((err) => console.log(err));

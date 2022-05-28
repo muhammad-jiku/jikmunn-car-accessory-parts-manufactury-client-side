@@ -1,16 +1,16 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-function ConfirmDeleteOrderModal({
+function ConfirmDeleteCarAccessoryModal({
   refetch,
-  confirmDeleteOrderModal,
-  setConfirmDeleteOrderModal,
+  confirmDeleteAccessoryModal,
+  setConfirmDeleteAccessoryModal,
 }) {
-  const { _id, userName, orderName } = confirmDeleteOrderModal;
+  const { _id, itemName } = confirmDeleteAccessoryModal;
 
   const handleDelete = (id) => {
-    console.log(confirmDeleteOrderModal);
-    fetch(`https://jikmunn-carmania.herokuapp.com/order/${id}`, {
+    console.log(confirmDeleteAccessoryModal);
+    fetch(`https://jikmunn-carmania.herokuapp.com/car-parts/${id}`, {
       method: 'DELETE',
       headers: {
         authorization: `Bearer ${localStorage?.getItem('accessToken')}`,
@@ -21,9 +21,9 @@ function ConfirmDeleteOrderModal({
         console.log(data);
         if (data?.acknowledged) {
           toast.success(
-            `Dear ${userName}, ${orderName} is removed from your order`
+            `Dear Admin, ${itemName} is removed from car parts accessory`
           );
-          setConfirmDeleteOrderModal(null);
+          setConfirmDeleteAccessoryModal(null);
           refetch();
         }
       })
@@ -36,8 +36,8 @@ function ConfirmDeleteOrderModal({
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <h3 className="font-bold text-lg text-red-700">
-            Dear ${userName}, are you sure want to remove {orderName} from your
-            orders?
+            Dear Admin, are you sure want to remove {itemName} from car items
+            accessory of CARMANIA?
           </h3>
           <div className="modal-action">
             <button
@@ -56,4 +56,4 @@ function ConfirmDeleteOrderModal({
   );
 }
 
-export default ConfirmDeleteOrderModal;
+export default ConfirmDeleteCarAccessoryModal;

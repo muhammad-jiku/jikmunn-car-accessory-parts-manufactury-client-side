@@ -4,7 +4,7 @@ function OrderRow({ order, idx, setConfirmDeleteOrderModal }) {
   const { _id, orderId, orderName, quantity, price, user, address } = order;
 
   // const handleDelete = (email) => {
-  //   fetch(`http://localhost:5000/order/${email}`, {
+  //   fetch(`https://jikmunn-carmania.herokuapp.com/order/${email}`, {
   //     method: 'DELETE'
   //   });
   // }

@@ -45,7 +45,7 @@ function AddReview() {
     //  };
     // send accessory details to database
     //  console.log('accessory details ', accessory);
-    fetch(`http://localhost:5000/reviews`, {
+    fetch(`https://jikmunn-carmania.herokuapp.com/reviews`, {
       method: 'POST',
       headers: {
         //  authorization: `Bearer ${localStorage?.getItem('accessToken')}`,

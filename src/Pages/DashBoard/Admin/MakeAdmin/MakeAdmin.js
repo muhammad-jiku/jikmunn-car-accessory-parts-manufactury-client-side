@@ -9,7 +9,7 @@ function MakeAdmin() {
     isLoading,
     refetch,
   } = useQuery('users', () =>
-    fetch('http://localhost:5000/users', {
+    fetch('https://jikmunn-carmania.herokuapp.com/users', {
       method: 'GET',
       headers: {
         authorization: `Bearer ${localStorage?.getItem('accessToken')}`,
@@ -18,7 +18,7 @@ function MakeAdmin() {
   );
   // const [users, setUsers] = useState([]);
   // useEffect(() => {
-  //   fetch('http://localhost:5000/users')
+  //   fetch('https://jikmunn-carmania.herokuapp.com/users')
   //     .then((res) => res.json())
   //     .then((data) => setUsers(data))
   //     .catch((err) => console.log(err));

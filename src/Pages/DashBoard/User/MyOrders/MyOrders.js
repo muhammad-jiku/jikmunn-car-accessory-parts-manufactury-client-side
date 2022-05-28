@@ -13,7 +13,7 @@ function MyOrders() {
   const [confirmDeleteOrderModal, setConfirmDeleteOrderModal] = useState(null);
   // const [myOrders, setMyOrders] = useState([]);
   // useEffect(() => {
-  //   fetch(`http://localhost:5000/order?user=${user?.email}`, {
+  //   fetch(`https://jikmunn-carmania.herokuapp.com/order?user=${user?.email}`, {
   //     method: 'GET',
   //     headers: {
   //       'content-type': 'application/json',
@@ -40,7 +40,7 @@ function MyOrders() {
     isLoading,
     refetch,
   } = useQuery(['myOrders', user], () =>
-    fetch(`http://localhost:5000/order?user=${user?.email}`, {
+    fetch(`https://jikmunn-carmania.herokuapp.com/order?user=${user?.email}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json',

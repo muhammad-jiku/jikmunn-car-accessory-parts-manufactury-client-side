@@ -10,7 +10,9 @@ import Spinner from '../../Shared/Spinner/Spinner';
 
 function Review() {
   const { data: reviews, isLoading } = useQuery('reviews', () =>
-    fetch('http://localhost:5000/reviews').then((res) => res.json())
+    fetch('https://jikmunn-carmania.herokuapp.com/reviews').then((res) =>
+      res.json()
+    )
   );
 
   if (isLoading) return <Spinner />;

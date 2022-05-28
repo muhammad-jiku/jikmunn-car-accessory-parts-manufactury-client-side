@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CarItemsRow({ carItem, idx }) {
+function CarItemsRow({ carItem, idx, setConfirmDeleteAccessoryModal }) {
   const { _id, img, itemName, minQuantity, avaialableQuantity, price } =
     carItem;
   return (
@@ -32,16 +32,13 @@ function CarItemsRow({ carItem, idx }) {
           <th>{price}</th>
         </>
       )}
-      {/* <th>{avaialableQuantity}</th>
-      <th>{minQuantity}</th>
-      <th>{price}</th> */}
       <th>
         <label
-          // htmlFor="delete-modal"
+          htmlFor="confirm-modal"
           className="btn btn-error text-white font-bold"
-          //   onClick={() => setConfirmDelteModal(doctor)}
+          onClick={() => setConfirmDeleteAccessoryModal(carItem)}
         >
-          Delete
+          Cancel
         </label>
       </th>
     </tr>
