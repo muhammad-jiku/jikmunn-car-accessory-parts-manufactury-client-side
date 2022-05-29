@@ -60,7 +60,7 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
   return (
     <div>
       <input type="checkbox" id="update-modal" className="modal-toggle" />
-      <div className="modal modal-bottom sm:modal-middle">
+      <div className="modal modal-bottom sm:modal-middle z-10">
         <div className="modal-box relative">
           <label
             htmlFor="update-modal"
@@ -181,9 +181,12 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
                 {...register('img', {
                   required: { value: true, message: 'Image is required' },
                 })}
-                readOnly
-                required
               />
+              <p className="text-red-500 font-semibold">
+                {errors.img?.type === 'required' && (
+                  <span>{errors?.img?.message}</span>
+                )}
+              </p>
             </div>
 
             <div className="form-control mt-6">

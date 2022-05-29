@@ -64,6 +64,7 @@ const ManageAllOrders = () => {
                       order={order}
                       idx={idx}
                       setConfirmDeleteOrderModal={setConfirmDeleteOrderModal}
+                      refetch={refetch}
                     />
                   ))}
               </tbody>

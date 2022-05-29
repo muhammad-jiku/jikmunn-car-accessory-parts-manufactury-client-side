@@ -21,7 +21,7 @@ const Footer = () => {
         </div>
         {/*  */}
         <div>
-          <span className="footer-title">Services</span>
+          <span className="text-black font-bold">Services</span>
           <p className="link link-hover">Branding</p>
           <p className="link link-hover">Design</p>
           <p className="link link-hover">Marketing</p>
@@ -29,7 +29,7 @@ const Footer = () => {
         </div>
         {/*  */}
         <div>
-          <span className="footer-title">Company</span>
+          <span className="text-black font-bold">Company</span>
           <p className="link link-hover">About us</p>
           <p className="link link-hover">Contact</p>
           <p className="link link-hover">Jobs</p>
@@ -37,14 +37,14 @@ const Footer = () => {
         </div>
         {/*  */}
         <div>
-          <span className="footer-title">Legal</span>
+          <span className="text-black font-bold">Legal</span>
           <p className="link link-hover">Terms of use</p>
           <p className="link link-hover">Privacy policy</p>
           <p className="link link-hover">Cookie policy</p>
         </div>
         {/*  */}
         <div>
-          <span className="footer-title">
+          <span className="text-black font-bold">
             SUBSCRIBE AND GET 5% OFF DISCOUNT
           </span>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -56,24 +56,23 @@ const Footer = () => {
                 </span>
               </label>
 
-              <div className="relative">
+              <div className="flex">
                 <input
                   type="email"
                   placeholder="username@site.com"
-                  className="input input-bordered w-full mr-16"
+                  className="input input-bordered w-full"
                   {...register('subscribe')}
                   required
                 />
-                <button
+                <input
                   type="submit"
-                  className="btn btn-primary absolute top-0 right-0 rounded-l-none"
-                >
-                  Subscribe
-                </button>
+                  className="btn btn-primary rounded"
+                  value="Subscribe"
+                />
               </div>
             </div>
           </form>
-          <span className="footer-title">Social</span>
+          <span className="text-black font-bold">Social</span>
           <div className="mb-4">
             <div className="grid grid-flow-col gap-4">
               <a href="#social">

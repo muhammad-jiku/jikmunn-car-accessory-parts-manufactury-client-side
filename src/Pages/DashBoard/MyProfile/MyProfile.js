@@ -47,9 +47,7 @@ const MyProfile = () => {
         <div>
           <h1 className="text-2xl mb-4">Name: {user?.displayName}</h1>
           <h1 className="text-xl mb-4">Email: {userProfile?.email}</h1>
-          {userProfile?.role && (
-            <h1 className="text-xl mb-4">{userProfile?.role}</h1>
-          )}
+          {userProfile?.role && <h1 className="text-xl mb-4">Admin</h1>}
 
           <h1 className="text-xl mb-4">
             Institution: {userProfile?.education || 'education'}
@@ -60,9 +58,16 @@ const MyProfile = () => {
           <h1 className="text-xl mb-4">
             Address: {userProfile?.location || 'location'}
           </h1>
-          <h1 className="text-xl mb-4">
-            LinkedIn: {userProfile?.linkedIn || 'linkedIn'}
-          </h1>
+          {userProfile?.linkedIn ? (
+            <>
+              LinkedIn:{' '}
+              <a href={userProfile?.linkedIn} className="text-lg text-black">
+                {userProfile?.linkedIn}
+              </a>
+            </>
+          ) : (
+            <h1 className="text-xl mb-4">LinkedIn: linkedIn</h1>
+          )}
         </div>
         <label
           htmlFor="update-modal"

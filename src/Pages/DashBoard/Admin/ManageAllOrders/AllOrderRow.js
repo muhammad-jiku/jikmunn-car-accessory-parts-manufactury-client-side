@@ -1,7 +1,9 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 
-const AllOrderRow = ({ order, idx, setConfirmDeleteOrderModal }) => {
+const AllOrderRow = ({ order, idx, setConfirmDeleteOrderModal, refetch }) => {
   const {
+    _id,
     status,
     orderName,
     quantity,
@@ -11,6 +13,29 @@ const AllOrderRow = ({ order, idx, setConfirmDeleteOrderModal }) => {
     paid,
     transactionId,
   } = order;
+
+  const shipOrder = () => {
+    fetch(`https://jikmunn-carmania.herokuapp.com/order/${_id}`, {
+      method: 'PUT',
+      headers: {
+        authorization: `Bearer ${localStorage?.getItem('accessToken')}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 403) {
+          toast.error(`${orderName} is failed to ship!`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        if (data?.modifiedCount > 0) {
+          refetch();
+          toast.success(`${orderName} is successfully shipped!`);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <tr>
@@ -34,9 +59,19 @@ const AllOrderRow = ({ order, idx, setConfirmDeleteOrderModal }) => {
       <th>
         {paid ? (
           <>
-            <button className="btn btn-success text-white font-bold mr-2">
-              Ship
-            </button>
+            {status === 'shipped' && (
+              <button className="btn font-bold uppercase text-white" disabled>
+                {status}
+              </button>
+            )}
+            {status === 'pending' && (
+              <button
+                className="btn btn-success text-white font-bold mr-2"
+                onClick={shipOrder}
+              >
+                Ship
+              </button>
+            )}
           </>
         ) : (
           <>
