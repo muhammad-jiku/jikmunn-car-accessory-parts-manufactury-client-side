@@ -1,7 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function OrderRow({ order, idx, setConfirmDeleteOrderModal }) {
-  const { _id, orderId, orderName, quantity, price, user, address } = order;
+  const {
+    _id,
+    orderId,
+    orderName,
+    quantity,
+    price,
+    user,
+    address,
+    paid,
+    transactionId,
+  } = order;
 
   // const handleDelete = (email) => {
   //   fetch(`https://jikmunn-carmania.herokuapp.com/order/${email}`, {
@@ -31,20 +42,29 @@ function OrderRow({ order, idx, setConfirmDeleteOrderModal }) {
       <th>{user}</th>
       <th>{address}</th>
       <th>
-        <label
-          // htmlFor="confirm-modal"
-          className="btn btn-success text-white font-bold mr-2"
-          //   onClick={() => setConfirmDelteModal(doctor)}
-        >
-          Pay
-        </label>
-        <label
-          htmlFor="confirm-modal"
-          className="btn btn-error text-white font-bold"
-          onClick={() => setConfirmDeleteOrderModal(order)}
-        >
-          Cancel
-        </label>
+        {paid ? (
+          <>
+            <div className="uppercase text-success font-bold">
+              <span className="mr-2">PAid</span>
+              <span className="text-xs text-black">{transactionId}</span>
+            </div>
+          </>
+        ) : (
+          <>
+            <Link to={`/dashboard/payment/${_id}`}>
+              <button className="btn btn-success text-white font-bold mr-2">
+                Pay
+              </button>
+            </Link>
+            <label
+              htmlFor="confirm-modal"
+              className="btn btn-error text-white font-bold"
+              onClick={() => setConfirmDeleteOrderModal(order)}
+            >
+              Cancel
+            </label>
+          </>
+        )}
       </th>
     </tr>
   );

@@ -47,7 +47,6 @@ function CarPartsPurchaseModal({ carItemPurchase, setCarItemPurchase }) {
     });
 
     const order = {
-      orderId: _id,
       orderName: itemName,
       user: email,
       userName: displayName,
