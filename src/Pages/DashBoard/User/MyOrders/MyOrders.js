@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 import auth from '../../../../firebase.init';
 import OrderRow from './OrderRow';
 import Spinner from '../../../Shared/Spinner/Spinner';
-import ConfirmDeleteOrderModal from '../ConfirmDeleteOrderModal/ConfirmDeleteOrderModal';
+import ConfirmDeleteOrderModal from '../../ConfirmDeleteOrderModal/ConfirmDeleteOrderModal';
 
 function MyOrders() {
   const [user] = useAuthState(auth);

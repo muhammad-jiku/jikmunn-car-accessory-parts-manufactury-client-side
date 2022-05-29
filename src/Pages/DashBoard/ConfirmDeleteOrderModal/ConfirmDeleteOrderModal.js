@@ -6,7 +6,7 @@ function ConfirmDeleteOrderModal({
   confirmDeleteOrderModal,
   setConfirmDeleteOrderModal,
 }) {
-  const { _id, userName, orderName } = confirmDeleteOrderModal;
+  const { _id, orderName } = confirmDeleteOrderModal;
 
   const handleDelete = (id) => {
     console.log(confirmDeleteOrderModal);
@@ -20,9 +20,7 @@ function ConfirmDeleteOrderModal({
       .then((data) => {
         console.log(data);
         if (data?.acknowledged) {
-          toast.success(
-            `Dear ${userName}, ${orderName} is removed from your order`
-          );
+          toast.success(`${orderName} is removed from your order collection`);
           setConfirmDeleteOrderModal(null);
           refetch();
         }
@@ -36,9 +34,9 @@ function ConfirmDeleteOrderModal({
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <h3 className="font-bold text-lg text-red-700">
-            Dear ${userName}, are you sure want to remove {orderName} from your
-            orders?
+            are you sure want to remove {orderName} from orders collection?
           </h3>
+
           <div className="modal-action">
             <button
               className="btn btn-error text-white font-bold"
