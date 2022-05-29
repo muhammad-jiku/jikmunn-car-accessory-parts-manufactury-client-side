@@ -6,7 +6,7 @@ import { signOut } from 'firebase/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 
-function Header() {
+const Header = () => {
   const [user, loading, error] = useAuthState(auth);
 
   const signingOut = () => {
@@ -35,6 +35,9 @@ function Header() {
       </li>
       <li>
         <Link to="/car-parts">Accessories</Link>
+      </li>{' '}
+      <li>
+        <Link to="/portfolio">Portfolio</Link>
       </li>
       {user ? (
         <>
@@ -150,6 +153,6 @@ function Header() {
       </div>
     </div>
   );
-}
+};
 
 export default Header;

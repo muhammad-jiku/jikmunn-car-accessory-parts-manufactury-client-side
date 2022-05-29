@@ -21,6 +21,7 @@ import RequiredAuth from './Pages/Authentication/RequiredAuth/RequiredAuth';
 import NotFound from './Pages/Shared/NotFound/NotFound';
 import RequiredAdmin from './Pages/Authentication/RequiredAdmin/RequiredAdmin';
 import Payment from './Pages/DashBoard/Payment/Payment';
+import Portfolio from './Pages/Portfolio/Portfolio';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/car-parts" element={<CarParts />} />
