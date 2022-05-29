@@ -5,12 +5,13 @@ import {
 } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import useToken from '../../../customHooks/useToken/useToken';
 import auth from '../../../firebase.init';
 import Spinner from '../../Shared/Spinner/Spinner';
 import SocialSignIn from '../SocialSignIn/SocialSignIn';
 
-function SignUp() {
+const SignUp = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -23,7 +24,7 @@ function SignUp() {
 
   const [createUserWithEmailAndPassword, user, loading, signUpError] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+  const [updateProfile, updating] = useUpdateProfile(auth);
 
   let errorMessage;
   let from = location.state?.from?.pathname || '/';
@@ -37,22 +38,22 @@ function SignUp() {
     }
   }, [token, user, navigate, from]);
 
+  useEffect(() => {
+    if (signUpError) {
+      toast.error('Invalid email or password');
+    }
+    return;
+  }, [signUpError]);
+
   if (loading || updating) return <Spinner />;
 
-  // const handleSignUp = async () => {
-  //   await createUserWithEmailAndPassword();
-  // };
-
   const onSubmit = async () => {
-    // console.log(data);
     const displayName = watch('displayName').toUpperCase();
     const email = watch('email');
     const password = watch('password');
-    console.log(email, password);
 
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: displayName });
-    console.log('Updated name', displayName);
   };
 
   return (
@@ -61,9 +62,8 @@ function SignUp() {
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Sign up now!</h1>
           <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+            Welcome to the Carmania. Here you can purchase your choosable car
+            part accessory. So, sign up now to start your journey
           </p>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -159,12 +159,7 @@ function SignUp() {
                   {errors.password?.type === 'minLength' && (
                     <span>{errors?.password?.message}</span>
                   )}
-                </p>{' '}
-                {/* <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                  </a>
-                </label> */}
+                </p>
               </div>
 
               <div className="form-control mt-6">
@@ -175,7 +170,6 @@ function SignUp() {
                   value="Sign Up"
                 />{' '}
                 <p className="text-center font-bold">
-                  {/* <a href="#" className="label-text-alt link link-hover"> */}
                   Already have an account?{' '}
                   <span
                     className="text-primary cursor-pointer"
@@ -184,15 +178,9 @@ function SignUp() {
                     {' '}
                     sign in
                   </span>
-                  {/* </a> */}
                 </p>
               </div>
             </form>
-            {/* <div className="form-control mt-6">
-              <button className="btn btn-primary" onClick={handleSignUp}>
-                Sign up
-              </button>
-            </div> */}
             <div className="divider">OR</div>
             <SocialSignIn />
           </div>
@@ -200,6 +188,6 @@ function SignUp() {
       </div>
     </div>
   );
-}
+};
 
 export default SignUp;

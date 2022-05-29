@@ -1,11 +1,11 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-function ConfirmDeleteOrderModal({
+const ConfirmDeleteOrderModal = ({
   refetch,
   confirmDeleteOrderModal,
   setConfirmDeleteOrderModal,
-}) {
+}) => {
   const { _id, orderName } = confirmDeleteOrderModal;
 
   const handleDelete = (id) => {
@@ -52,6 +52,6 @@ function ConfirmDeleteOrderModal({
       </div>
     </div>
   );
-}
+};
 
 export default ConfirmDeleteOrderModal;

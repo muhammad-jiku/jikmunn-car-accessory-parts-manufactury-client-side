@@ -1,7 +1,8 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import Spinner from '../../Shared/Spinner/Spinner';
 
-function CheckoutForm({ order }) {
+const CheckoutForm = ({ order }) => {
   const [cardError, setCardError] = useState('');
   const [success, setSuccess] = useState('');
   const [transactionId, setTransactionId] = useState('');
@@ -37,21 +38,15 @@ function CheckoutForm({ order }) {
     e.preventDefault();
 
     if (!stripe || !elements) {
-      // Stripe.js has not loaded yet. Make sure to disable
-      // form submission until Stripe.js has loaded.
       return;
     }
 
-    // Get a reference to a mounted CardElement. Elements knows how
-    // to find your CardElement because there can only ever be one of
-    // each type of element.
     const card = elements.getElement(CardElement);
 
     if (card == null) {
       return;
     }
 
-    // Use your card Element with other Stripe.js APIs
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
       card,
@@ -106,6 +101,7 @@ function CheckoutForm({ order }) {
 
   return (
     <div>
+      {isProcessing && <Spinner />}
       <form onSubmit={handleSubmit}>
         <CardElement
           options={{
@@ -143,6 +139,6 @@ function CheckoutForm({ order }) {
       )}
     </div>
   );
-}
+};
 
 export default CheckoutForm;

@@ -35,30 +35,32 @@ const MyProfile = () => {
 
   if (isLoading) return <Spinner />;
   return (
-    <div class="container mx-auto">
-      <div class="container mx-auto px-6 my-6">
-        <div class="w-80 rounded-full">
+    <div className="container mx-auto px-4 lg:px-64 card bg-base-100">
+      <div className="card-body">
+        <div className="w-64 rounded-full">
           <img
-            class="mask mask-circle object-center my-6"
+            className="mask mask-circle object-center my-6"
             src={user?.photoURL || 'https://i.ibb.co/mF39255/icon-256x256.png'}
             alt={user?.displayName}
           />
         </div>
         <div>
-          <h1 className="text-2xl">Name: {user?.displayName}</h1>
-          <h1 className="text-2xl">Email: {userProfile?.email}</h1>
+          <h1 className="text-2xl mb-4">Name: {user?.displayName}</h1>
+          <h1 className="text-xl mb-4">Email: {userProfile?.email}</h1>
           {userProfile?.role && (
-            <h1 className="text-2xl">{userProfile?.role}</h1>
+            <h1 className="text-xl mb-4">{userProfile?.role}</h1>
           )}
 
-          <h1 className="text-2xl">
+          <h1 className="text-xl mb-4">
             Institution: {userProfile?.education || 'education'}
           </h1>
-          <h1 className="text-2xl">Phone: {userProfile?.phone || 'phone'}</h1>
-          <h1 className="text-2xl">
+          <h1 className="text-xl mb-4">
+            Phone: {userProfile?.phone || 'phone'}
+          </h1>
+          <h1 className="text-xl mb-4">
             Address: {userProfile?.location || 'location'}
           </h1>
-          <h1 className="text-2xl">
+          <h1 className="text-xl mb-4">
             LinkedIn: {userProfile?.linkedIn || 'linkedIn'}
           </h1>
         </div>

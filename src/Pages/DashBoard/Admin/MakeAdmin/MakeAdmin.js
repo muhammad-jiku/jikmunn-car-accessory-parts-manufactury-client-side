@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
 import AdminRow from './AdminRow';
 import Spinner from '../../../Shared/Spinner/Spinner';
 
-function MakeAdmin() {
+const MakeAdmin = () => {
   const {
     data: users,
     isLoading,
@@ -16,47 +16,41 @@ function MakeAdmin() {
       },
     }).then((res) => res.json())
   );
-  // const [users, setUsers] = useState([]);
-  // useEffect(() => {
-  //   fetch('https://jikmunn-carmania.herokuapp.com/users')
-  //     .then((res) => res.json())
-  //     .then((data) => setUsers(data))
-  //     .catch((err) => console.log(err));
-  // }, []);
 
   if (isLoading) return <Spinner />;
   return (
     <div>
-      MakeAdmin
-      {console.log(users)}
-      <div className="overflow-x-auto w-full">
-        <table className="table w-full">
-          <thead>
-            <tr>
-              <th></th>
-              {/* <th>Image</th>
-              <th>Name</th> */}
-              <th>Email</th>
-              {/* <th>Address</th> */}
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* <!-- row 1 --> */}
-            {users?.map((user, idx) => (
-              <AdminRow
-                key={user?._id}
-                user={user}
-                idx={idx}
-                refetch={refetch}
-                // setConfirmDelteModal={setConfirmDelteModal}
-              />
-            ))}
-          </tbody>
-        </table>
-      </div>{' '}
+      {users?.length === 0 ? (
+        <h1 className="text-center text-3xl text-red-500 my-6">
+          No account is created yet
+        </h1>
+      ) : (
+        <>
+          <div className="overflow-x-auto w-full">
+            <table className="table w-full">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Email</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users?.map((user, idx) => (
+                  <AdminRow
+                    key={user?._id}
+                    user={user}
+                    idx={idx}
+                    refetch={refetch}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </div>{' '}
+        </>
+      )}
     </div>
   );
-}
+};
 
 export default MakeAdmin;

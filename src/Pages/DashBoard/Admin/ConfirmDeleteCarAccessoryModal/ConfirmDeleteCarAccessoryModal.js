@@ -1,11 +1,11 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-function ConfirmDeleteCarAccessoryModal({
+const ConfirmDeleteCarAccessoryModal = ({
   refetch,
   confirmDeleteAccessoryModal,
   setConfirmDeleteAccessoryModal,
-}) {
+}) => {
   const { _id, itemName } = confirmDeleteAccessoryModal;
 
   const handleDelete = (id) => {
@@ -54,6 +54,6 @@ function ConfirmDeleteCarAccessoryModal({
       </div>
     </div>
   );
-}
+};
 
 export default ConfirmDeleteCarAccessoryModal;

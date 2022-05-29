@@ -4,8 +4,10 @@ import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useToken from '../../../customHooks/useToken/useToken';
+import Spinner from '../../Shared/Spinner/Spinner';
+import { toast } from 'react-toastify';
 
-function SocialSignIn() {
+const SocialSignIn = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -15,17 +17,6 @@ function SocialSignIn() {
 
   const [token] = useToken(user);
 
-  // if (error) {
-  //   return (
-  //     <div>
-  //       <p>Error: {error.message}</p>
-  //     </div>
-  //   );
-  // }
-  // if (loading) {
-  //   return <p>Loading...</p>;
-  // }
-
   useEffect(() => {
     if (token) {
       console.log(user);
@@ -33,9 +24,19 @@ function SocialSignIn() {
     }
   }, [token, user, navigate, from]);
 
+  useEffect(() => {
+    if (error) {
+      toast.error('Social sign in failed');
+    }
+    return;
+  }, [error]);
+
   const handleGoogleLogin = async () => {
     await signInWithGoogle();
   };
+
+  if (loading) return <Spinner />;
+
   return (
     <div>
       <button
@@ -46,6 +47,6 @@ function SocialSignIn() {
       </button>
     </div>
   );
-}
+};
 
 export default SocialSignIn;

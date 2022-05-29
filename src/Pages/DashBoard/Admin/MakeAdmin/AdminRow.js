@@ -1,8 +1,8 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-function AdminRow({ user, idx, refetch }) {
-  const { _id, email, role } = user;
+const AdminRow = ({ user, idx, refetch }) => {
+  const { email, role } = user;
   const makeAdmin = () => {
     fetch(`https://jikmunn-carmania.herokuapp.com/user/admin/${email}`, {
       method: 'PUT',
@@ -28,27 +28,18 @@ function AdminRow({ user, idx, refetch }) {
   return (
     <tr>
       <th>{idx + 1}</th>
-      {/* <th>
-        <div className="avatar">
-          <div className="w-12 rounded-full">
-            <img src={img} alt={itemName} />
-          </div>
-        </div>
-      </th> */}
-      {/* <th>
-        {itemName}
-      </th> */}
+
       <th>{email}</th>
-      {/* <th>{address}</th> */}
+
       <th>
         {role === 'admin' ? (
           <>
             <button className="btn font-bold uppercase text-white" disabled>
               Admin
             </button>{' '}
-            <button className="btn font-bold uppercase text-white ml-2">
+            {/* <button className="btn font-bold uppercase text-white ml-2">
               Remove Admin
-            </button>
+            </button> */}
           </>
         ) : (
           <button
@@ -61,6 +52,6 @@ function AdminRow({ user, idx, refetch }) {
       </th>
     </tr>
   );
-}
+};
 
 export default AdminRow;

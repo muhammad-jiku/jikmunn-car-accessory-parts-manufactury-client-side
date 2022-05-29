@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function NotFound() {
+const NotFound = () => {
   const navigate = useNavigate();
   return (
     <div className="hero min-h-screen bg-base-100">
@@ -19,6 +19,6 @@ function NotFound() {
       </div>
     </div>
   );
-}
+};
 
 export default NotFound;

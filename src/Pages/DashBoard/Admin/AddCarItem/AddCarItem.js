@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
-function AddCarItem() {
+const AddCarItem = () => {
   const imageApiKey = 'aef40ff4201c7cc59195b859727f7286';
   const {
     register,
@@ -67,14 +67,15 @@ function AddCarItem() {
   };
   return (
     <div>
-      AddCarItem
       <div className="container mx-auto px-4 lg:px-64 card bg-base-100">
         <div className="card-body">
+          <h1 className="text-2xl text-center">Add new car part accessory</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
-            {/* doctors name */}
             <div className="form-control mb-4">
               <label className="label">
-                <span className="label-text text-primary font-bold">Name</span>
+                <span className="label-text text-primary font-bold">
+                  Car part Accessory
+                </span>
               </label>
               <input
                 type="text"
@@ -100,10 +101,9 @@ function AddCarItem() {
                 )}
               </p>
             </div>
-            {/* doctors email */}
             <div className="form-control mb-4">
               <label className="label">
-                <span className="label-text text-primary font-bold">Email</span>
+                <span className="label-text text-primary font-bold">Price</span>
               </label>
               <input
                 type="number"
@@ -112,7 +112,7 @@ function AddCarItem() {
                 {...register('price', {
                   required: {
                     value: true,
-                    message: 'price is required',
+                    message: 'Price is required',
                   },
                 })}
               />
@@ -122,19 +122,20 @@ function AddCarItem() {
                 )}
               </p>
             </div>
-            {/* doctors speciality */}
             <div className="form-control mb-4">
               <label className="label">
-                <span className="label-text text-primary font-bold">Email</span>
+                <span className="label-text text-primary font-bold">
+                  Available Quantity
+                </span>
               </label>
               <input
                 type="number"
-                placeholder="avaialableQuantity"
+                placeholder="Avaialable Quantity"
                 className="input input-bordered input-primary"
                 {...register('avaialableQuantity', {
                   required: {
                     value: true,
-                    message: 'avaialableQuantity is required',
+                    message: 'Avaialable Quantity is required',
                   },
                 })}
               />
@@ -146,16 +147,18 @@ function AddCarItem() {
             </div>
             <div className="form-control mb-4">
               <label className="label">
-                <span className="label-text text-primary font-bold">Email</span>
+                <span className="label-text text-primary font-bold">
+                  Minimum Quantity
+                </span>
               </label>
               <input
                 type="number"
-                placeholder="minQuantity"
+                placeholder="Minimum Quantity"
                 className="input input-bordered input-primary"
                 {...register('minQuantity', {
                   required: {
                     value: true,
-                    message: 'minQuantity is required',
+                    message: 'Minimum Quantity is required',
                   },
                 })}
               />
@@ -165,19 +168,20 @@ function AddCarItem() {
                 )}
               </p>
             </div>
-            {/* doctors speciality */}
             <div className="form-control mb-4">
               <label className="label">
-                <span className="label-text text-primary font-bold">Email</span>
+                <span className="label-text text-primary font-bold">
+                  Description
+                </span>
               </label>
               <input
                 type="text"
-                placeholder="description"
+                placeholder="Description"
                 className="input input-bordered input-primary"
                 {...register('description', {
                   required: {
                     value: true,
-                    message: 'description is required',
+                    message: 'Description is required',
                   },
                   maxLength: {
                     value: 300,
@@ -194,7 +198,6 @@ function AddCarItem() {
                 )}
               </p>
             </div>
-            {/* doctors image */}
             <div className="form-control mb-4">
               <label className="label">
                 <span className="label-text text-primary font-bold">Image</span>
@@ -212,30 +215,18 @@ function AddCarItem() {
                 )}
               </p>
             </div>
-            {/* submit button */}
             <div className="form-control mt-6">
-              {/* {signInError} */}
               <input
                 type="submit"
                 className="btn btn-primary text-white uppercase"
-                value="Add Accessory"
+                value="Add CAR PART Accessory"
               />{' '}
-              {/* <p className="text-center font-bold">
-                    New to Doctors Portal?{' '}
-                    <span
-                      className="text-primary cursor-pointer"
-                      onClick={() => navigate('/signup')}
-                    >
-                      {' '}
-                      sign up
-                    </span>
-                  </p> */}
             </div>
           </form>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default AddCarItem;

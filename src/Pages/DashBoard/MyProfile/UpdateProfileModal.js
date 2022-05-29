@@ -13,18 +13,16 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
     formState: { errors },
     handleSubmit,
     watch,
-    getValues,
   } = useForm();
 
   const onSubmit = () => {
-    // e.preventDefault();
-    // console.log(data);
     const displayName = watch('displayName').toUpperCase();
     const email = watch('email');
     const education = watch('education');
     const phone = watch('phone');
     const location = watch('location');
     const linkedIn = watch('linkedIn');
+    const img = watch('img');
     console.log({
       displayName,
       email,
@@ -41,6 +39,7 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
       phone: phone,
       linkedIn: linkedIn,
       education: education,
+      img: img,
     };
 
     fetch(`https://jikmunn-carmania.herokuapp.com/user/${user?.email}`, {
@@ -74,77 +73,26 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
           </h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control mb-4">
-              {/* <label className="label">
-                <span className="label-text text-primary font-bold">Name</span>
-              </label> */}
               <input
                 type="text"
-                // placeholder="Name"
-                // defaultValue={user?.displayName}
                 value={user?.displayName}
                 className="input input-bordered input-primary"
-                {...register('displayName', {
-                  // required: {
-                  //   value: true,
-                  //   message: 'Name is required',
-                  // },
-                  // maxLength: {
-                  //   value: 30,
-                  //   message: 'Name can not be more than 30 letters',
-                  // },
-                })}
+                {...register('displayName')}
                 readOnly
                 required
-                // disabled
               />
-              {/* <p className="text-red-500 font-semibold">
-                {errors?.displayName?.type === 'required' && (
-                  <span>{errors?.displayName?.message}</span>
-                )}
-                {errors?.displayName?.type === 'maxLength' && (
-                  <span>{errors?.displayName?.message}</span>
-                )}
-              </p> */}
             </div>
             <div className="form-control mb-4">
-              {/* <label className="label">
-                <span className="label-text text-primary font-bold">Email</span>
-              </label> */}
               <input
                 type="email"
-                // placeholder="email"
-                // defaultValue={user?.email}
                 value={user?.email}
                 className="input input-bordered input-primary"
-                {...register('email', {
-                  // required: {
-                  //   value: true,
-                  //   message: 'Email is required',
-                  // },
-                  // pattern: {
-                  //   value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
-                  //   message: 'Invalid Email',
-                  // },
-                })}
+                {...register('email')}
                 readOnly
                 required
-                // disabled
               />
-              {/* <p className="text-red-500 font-semibold">
-                {errors.email?.type === 'required' && (
-                  <span>{errors?.email?.message}</span>
-                )}
-                {errors.email?.type === 'pattern' && (
-                  <span>{errors?.email?.message}</span>
-                )}
-              </p> */}
             </div>
             <div className="form-control mb-4">
-              {/* <label className="label">
-                <span className="label-text text-primary font-bold">
-                  Name
-                </span>
-              </label> */}
               <input
                 type="text"
                 placeholder="Education"
@@ -170,11 +118,6 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
               </p>{' '}
             </div>
             <div className="form-control mb-4">
-              {/* <label className="label">
-                <span className="label-text text-primary font-bold">
-                  Name
-                </span>
-              </label> */}
               <input
                 type="tel"
                 placeholder="Phone"
@@ -184,29 +127,17 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
                     value: true,
                     message: 'Phone Number is required',
                   },
-                  // minLength: {
-                  //   value: 30,
-                  //   message: 'Address can not be more than 30 letters',
-                  // },
                 })}
               />
               <p className="text-red-500 font-semibold">
                 {errors.phone?.type === 'required' && (
                   <span>{errors?.phone?.message}</span>
                 )}
-                {/* {errors.address?.type === 'minLength' && (
-                  <span>{errors?.address?.message}</span>
-                )} */}
               </p>{' '}
             </div>
             <div className="form-control mb-4">
-              {/* <label className="label">
-                <span className="label-text text-primary font-bold">Name</span>
-              </label> */}
               <input
                 type="text"
-                // defaultValue={itemName}
-                // value={itemName}
                 placeholder="location"
                 className="input input-bordered input-primary"
                 {...register('location', {
@@ -215,74 +146,53 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
                     message: 'location is required',
                   },
                 })}
-                // readOnly
-                required
-                // disabled
               />
               <p className="text-red-500 font-semibold">
                 {errors?.location?.type === 'required' && (
                   <span>{errors?.location?.message}</span>
                 )}
-                {/* {errors?.displayName?.type === 'maxLength' && (
-                  <span>{errors?.displayName?.message}</span>
-                )} */}
               </p>
             </div>
             <div className="form-control mb-4">
-              {/* <label className="label">
-                <span className="label-text text-primary font-bold">
-                  Name
-                </span>
-              </label> */}
               <input
                 type="text"
                 placeholder="linkedIn"
-                // defaultValue={minQuantity}
                 className="input input-bordered input-primary"
                 {...register('linkedIn', {
                   required: {
                     value: true,
                     message: 'linkedIn is required',
                   },
-                  //   min: {
-                  //     value: minQuantity,
-                  //     message: `You can not order below ${minQuantity} pcs`,
-                  //   },
-                  //   max: {
-                  //     value: avaialableQuantity,
-                  //     message: `You can not order above ${avaialableQuantity} pcs`,
-                  //   },
                 })}
               />
               <p className="text-red-500 font-semibold">
                 {errors.linkedIn?.type === 'required' && (
                   <span>{errors?.linkedIn?.message}</span>
                 )}
-                {/* {errors.quantity?.type === 'min' && (
-                  <span>{errors?.quantity?.message}</span>
-                )}
-                {errors.quantity?.type === 'max' && (
-                  <span>{errors?.quantity?.message}</span>
-                )} */}
               </p>{' '}
+            </div>
+            <div className="form-control mb-4">
+              <input
+                type="text"
+                defaultValue={
+                  user?.photoURL || 'https://i.ibb.co/mF39255/icon-256x256.png'
+                }
+                className="input input-bordered input-primary"
+                {...register('img', {
+                  required: { value: true, message: 'Image is required' },
+                })}
+                readOnly
+                required
+              />
             </div>
 
             <div className="form-control mt-6">
-              {/* {errorMessage} */}
               <input
                 type="submit"
                 className="btn btn-primary text-white uppercase"
                 value="update"
               />{' '}
             </div>
-            {/* <div className="form-control mt-6">
-                <button
-                  className="btn btn-primary"
-                  onClick={handleSignIn}
-                >
-                  Sign in
-                </button>
-              </div>{' '} */}
           </form>
         </div>
       </div>

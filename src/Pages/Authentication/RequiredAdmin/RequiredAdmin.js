@@ -6,7 +6,7 @@ import useAdmin from '../../../customHooks/useAdmin/useAdmin';
 import auth from '../../../firebase.init';
 import Spinner from '../../Shared/Spinner/Spinner';
 
-function RequiredAdmin({ children }) {
+const RequiredAdmin = ({ children }) => {
   const [user, loading] = useAuthState(auth);
   const [admin, adminLoading] = useAdmin(user);
 
@@ -22,6 +22,6 @@ function RequiredAdmin({ children }) {
   }
 
   return children;
-}
+};
 
 export default RequiredAdmin;

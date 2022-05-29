@@ -10,15 +10,11 @@ const stripePromise = loadStripe(
   'pk_test_51L1xjlI8Pcw7BJpaYSjSszfpHUgQMwhYrr8jEgZtEadNtp4t2dOGzhHbls5x5XQQXMdFAlH5wQsfITnipSWrkAlM00KAvqRZXd'
 );
 
-function Payment() {
+const Payment = () => {
   const { id } = useParams();
   const url = `https://jikmunn-carmania.herokuapp.com/order/${id}`;
 
-  const {
-    data: order,
-    isLoading,
-    refetch,
-  } = useQuery(['myOrders', id], () =>
+  const { data: order, isLoading } = useQuery(['myOrders', id], () =>
     fetch(url, {
       method: 'GET',
       headers: {
@@ -74,6 +70,6 @@ function Payment() {
       </div>
     </div>
   );
-}
+};
 
 export default Payment;

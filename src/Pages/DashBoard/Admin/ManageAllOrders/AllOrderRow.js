@@ -1,11 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const AllOrderRow = ({ order, idx, setConfirmDeleteOrderModal }) => {
-  console.log(order);
   const {
-    _id,
-    orderId,
     status,
     orderName,
     quantity,
@@ -19,20 +15,7 @@ const AllOrderRow = ({ order, idx, setConfirmDeleteOrderModal }) => {
   return (
     <tr>
       <th>{idx + 1}</th>
-      {/* <th>
-        <div className="avatar">
-          <div className="w-12 rounded-full">
-            <img src={img} alt={name} />
-          </div>
-
-        </div>
-      </th> */}
-      <th>
-        {orderName}
-        {/* <span className="badge badge-ghost badge-sm">
-          Desktop Support Technician
-        </span> */}
-      </th>
+      <th>{orderName}</th>
       <th>{quantity}</th>
       <th>{price}</th>
       <th>{user}</th>

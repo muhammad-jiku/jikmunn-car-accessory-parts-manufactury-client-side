@@ -1,8 +1,7 @@
 import React from 'react';
 
-function CarItemsRow({ carItem, idx, setConfirmDeleteAccessoryModal }) {
-  const { _id, img, itemName, minQuantity, avaialableQuantity, price } =
-    carItem;
+const CarItemsRow = ({ carItem, idx, setConfirmDeleteAccessoryModal }) => {
+  const { img, itemName, minQuantity, avaialableQuantity, price } = carItem;
   return (
     <tr>
       <th>{idx + 1}</th>
@@ -13,12 +12,7 @@ function CarItemsRow({ carItem, idx, setConfirmDeleteAccessoryModal }) {
           </div>
         </div>
       </th>
-      <th>
-        {itemName}
-        {/* <span className="badge badge-ghost badge-sm">
-          Desktop Support Technician
-        </span> */}
-      </th>
+      <th>{itemName}</th>
       {avaialableQuantity < minQuantity ? (
         <>
           <th className="text-red-500">Out of stock</th>
@@ -43,6 +37,6 @@ function CarItemsRow({ carItem, idx, setConfirmDeleteAccessoryModal }) {
       </th>
     </tr>
   );
-}
+};
 
 export default CarItemsRow;

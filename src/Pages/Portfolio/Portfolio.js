@@ -2,7 +2,6 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import Spinner from '../Shared/Spinner/Spinner';
 import proPic from '../../Images/me.jpg';
-import { Link } from 'react-router-dom';
 
 const Portfolio = () => {
   const { data: profile, isLoading } = useQuery('profile', () =>
@@ -17,8 +16,8 @@ const Portfolio = () => {
       {console.log(profile)}
       <div className="flex flex-col items-center lg:flex-row">
         <div className="avatar px-6">
-          <div class="w-64 rounded-full">
-            <img class="mask mask-circle" src={proPic} alt="" />
+          <div className="w-64 rounded-full">
+            <img className="mask mask-circle" src={proPic} alt="" />
           </div>
         </div>
         <div className="px-6 text-justify">
@@ -52,12 +51,15 @@ const Portfolio = () => {
         </div>
       </div>
       <div className="my-6">
-        <h1 className="text-center text-orange-500 text-3xl my-6 uppercase">
+        <h1 className="text-center text-red-900 text-3xl my-6 uppercase">
           Some of my projects that i've designed and developed
         </h1>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {profile?.map((pro) => (
-            <div class="card card-compact bg-base-100 shadow-xl" key={pro?._id}>
+            <div
+              className="card card-compact bg-base-100 shadow-xl"
+              key={pro?._id}
+            >
               <a href={pro?.siteLink}>
                 <figure>
                   <img src={pro?.img} alt={pro?.projectName} />

@@ -29,8 +29,8 @@ function CarParts() {
   return (
     <div className="container mx-auto my-12">
       {/* {console.log(carParts)} */}
-      <h1 className="text-center text-3xl text-success my-6">
-        Brand Building Car Parts
+      <h1 className="text-center text-3xl text-primary my-6 uppercase italic">
+        Car ACCESSORY PARTS YOU MAY PURCHASE
       </h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {carParts?.slice(-3)?.map((carPart) => (

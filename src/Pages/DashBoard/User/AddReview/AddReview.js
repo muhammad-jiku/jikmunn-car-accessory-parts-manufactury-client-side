@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import auth from '../../../../firebase.init';
 
-function AddReview() {
+const AddReview = () => {
   const [user] = useAuthState(auth);
 
   const {
@@ -28,23 +28,6 @@ function AddReview() {
       img: img,
     };
 
-    //  const formData = new FormData();
-    //  const image = img[0];
-    //  formData.append('image', image);
-    //  const url = `https://api.imgbb.com/1/upload?key=${imageApiKey}`;
-    //  fetch(url, { method: 'POST', body: formData })
-    //  .then((res) => res.json())
-    //  .then((result) => {
-    //  if (result?.success) {
-    //  const img = result?.data?.url;
-    //  const reviews = {
-    //    displayName:displayName,
-    //    rating:rating,
-    //    review:review,
-    //   //  img: img,
-    //  };
-    // send accessory details to database
-    //  console.log('accessory details ', accessory);
     fetch(`https://jikmunn-carmania.herokuapp.com/reviews`, {
       method: 'POST',
       headers: {
@@ -65,140 +48,133 @@ function AddReview() {
       })
       .catch((err) => console.log(err));
   };
-  //    console.log('image address ', result);
-  //  })
-  //  .catch((err) => console.log(err));
 
-  // reset();
-  //  };
   return (
     <div>
-      AddReview
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {/* doctors name */}
-        <div className="form-control mb-4">
-          <label className="label">
-            <span className="label-text text-primary font-bold">Name</span>
-          </label>
-          <input
-            type="text"
-            value={user?.displayName}
-            className="input input-bordered input-primary"
-            {...register('displayName', {
-              required: {
-                value: true,
-                message: 'Name is required',
-              },
-            })}
-            readOnly
-            required
-          />
-          <p className="text-red-500 font-semibold">
-            {errors?.displayName?.type === 'required' && (
-              <span>{errors?.displayName?.message}</span>
-            )}
-          </p>
+      <div className="container mx-auto px-4 lg:px-64 card bg-base-100">
+        <div className="card-body">
+          {' '}
+          <h1 className="text-2xl text-center">Add Review</h1>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="form-control mb-4">
+              <label className="label">
+                <span className="label-text text-primary font-bold">Name</span>
+              </label>
+              <input
+                type="text"
+                value={user?.displayName}
+                className="input input-bordered input-primary"
+                {...register('displayName')}
+                readOnly
+                required
+              />
+              <p className="text-red-500 font-semibold">
+                {errors?.displayName?.type === 'required' && (
+                  <span>{errors?.displayName?.message}</span>
+                )}
+              </p>
+            </div>
+            <div className="form-control mb-4">
+              <label className="label">
+                <span className="label-text text-primary font-bold">
+                  Rating
+                </span>
+              </label>
+              <input
+                type="number"
+                placeholder="rating"
+                className="input input-bordered input-primary"
+                {...register('rating', {
+                  required: {
+                    value: true,
+                    message: 'Rating is required',
+                  },
+                  min: {
+                    value: 1,
+                    message: `You can not rate below 1 star`,
+                  },
+                  max: {
+                    value: 5,
+                    message: `You can not rate above 5 star`,
+                  },
+                })}
+              />
+              <p className="text-red-500 font-semibold">
+                {errors.rating?.type === 'required' && (
+                  <span>{errors?.rating?.message}</span>
+                )}
+                {errors.rating?.type === 'min' && (
+                  <span>{errors?.rating?.message}</span>
+                )}
+                {errors.rating?.type === 'max' && (
+                  <span>{errors?.rating?.message}</span>
+                )}
+              </p>
+            </div>
+            <div className="form-control mb-4">
+              <label className="label">
+                <span className="label-text text-primary font-bold">
+                  Review
+                </span>
+              </label>
+              <input
+                type="text"
+                placeholder="review"
+                className="input input-bordered input-primary"
+                {...register('review', {
+                  required: {
+                    value: true,
+                    message: 'Review is required',
+                  },
+                  maxLength: {
+                    value: 250,
+                    message: 'Review can not be more than 250 letters',
+                  },
+                })}
+              />
+              <p className="text-red-500 font-semibold">
+                {errors.review?.type === 'required' && (
+                  <span>{errors?.review?.message}</span>
+                )}
+                {errors?.review?.type === 'maxLength' && (
+                  <span>{errors?.review?.message}</span>
+                )}
+              </p>
+            </div>
+            <div className="form-control mb-4">
+              <label className="label">
+                <span className="label-text text-primary font-bold">Image</span>
+              </label>
+              <input
+                type="text"
+                defaultValue={
+                  user?.photoURL || 'https://i.ibb.co/mF39255/icon-256x256.png'
+                }
+                className="input input-bordered input-primary"
+                {...register('img', {
+                  required: { value: true, message: 'Image is required' },
+                })}
+                readOnly
+                required
+              />
+              <p className="text-red-500 font-semibold">
+                {errors?.img?.type === 'required' && (
+                  <span>{errors?.img?.message}</span>
+                )}
+              </p>
+            </div>
+            <div className="form-control mt-6">
+              <input
+                type="submit"
+                className="btn btn-primary text-white uppercase"
+                value="Add Review"
+              />{' '}
+            </div>
+          </form>
         </div>
-        {/* doctors email */}
-        <div className="form-control mb-4">
-          <label className="label">
-            <span className="label-text text-primary font-bold">Email</span>
-          </label>
-          <input
-            type="number"
-            placeholder="rating"
-            className="input input-bordered input-primary"
-            {...register('rating', {
-              required: {
-                value: true,
-                message: 'price is required',
-              },
-              min: {
-                value: 1,
-                message: `You can not rate below 1 star`,
-              },
-              max: {
-                value: 5,
-                message: `You can not rate above 5 star`,
-              },
-            })}
-          />
-          <p className="text-red-500 font-semibold">
-            {errors.rating?.type === 'required' && (
-              <span>{errors?.rating?.message}</span>
-            )}
-            {errors.rating?.type === 'min' && (
-              <span>{errors?.rating?.message}</span>
-            )}
-            {errors.rating?.type === 'max' && (
-              <span>{errors?.rating?.message}</span>
-            )}
-          </p>
-        </div>
-        {/* doctors speciality */}
-        <div className="form-control mb-4">
-          <label className="label">
-            <span className="label-text text-primary font-bold">Email</span>
-          </label>
-          <input
-            type="text"
-            placeholder="review"
-            className="input input-bordered input-primary"
-            {...register('review', {
-              required: {
-                value: true,
-                message: 'review is required',
-              },
-              maxLength: {
-                value: 250,
-                message: 'description can not be more than 250 letters',
-              },
-            })}
-          />
-          <p className="text-red-500 font-semibold">
-            {errors.review?.type === 'required' && (
-              <span>{errors?.review?.message}</span>
-            )}
-            {errors?.review?.type === 'maxLength' && (
-              <span>{errors?.review?.message}</span>
-            )}
-          </p>
-        </div>
-        {/* doctors image */}
-        <div className="form-control mb-4">
-          <label className="label">
-            <span className="label-text text-primary font-bold">Image</span>
-          </label>
-          <input
-            type="text"
-            value={
-              user?.photoURL || 'https://i.ibb.co/mF39255/icon-256x256.png'
-            }
-            className="input input-bordered input-primary"
-            {...register('img', {
-              required: { value: true, message: 'Image is required' },
-            })}
-            readOnly
-            // required
-          />
-          {/* <p className="text-red-500 font-semibold">
-            {errors?.img?.type === 'required' && (
-              <span>{errors?.img?.message}</span>
-            )}
-          </p> */}
-        </div>
-        {/* submit button */}
-        <div className="form-control mt-6">
-          {/* {signInError} */}
-          <input
-            type="submit"
-            className="btn btn-primary text-white uppercase"
-            value="submit"
-          />{' '}
-        </div>
-      </form>
+      </div>
     </div>
   );
-}
+};
 
 export default AddReview;

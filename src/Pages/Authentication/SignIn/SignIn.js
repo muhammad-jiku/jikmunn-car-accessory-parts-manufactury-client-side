@@ -11,7 +11,7 @@ import SocialSignIn from '../SocialSignIn/SocialSignIn';
 import Spinner from '../../Shared/Spinner/Spinner';
 import useToken from '../../../customHooks/useToken/useToken';
 
-function SignIn() {
+const SignIn = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -24,8 +24,7 @@ function SignIn() {
 
   const [signInWithEmailAndPassword, user, loading, signInerror] =
     useSignInWithEmailAndPassword(auth);
-  const [sendPasswordResetEmail, sending, resetError] =
-    useSendPasswordResetEmail(auth);
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
   let errorMessage;
   let from = location.state?.from?.pathname || '/';
@@ -38,6 +37,13 @@ function SignIn() {
       navigate(from, { replace: true });
     }
   }, [token, user, navigate, from]);
+
+  useEffect(() => {
+    if (signInerror) {
+      toast.error('Invalid email or password');
+    }
+    return;
+  }, [signInerror]);
 
   if (loading || sending) return <Spinner />;
 
@@ -67,9 +73,8 @@ function SignIn() {
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Sign in now!</h1>
           <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+            Welcome to the Carmania. Here you can purchase your choosable car
+            part accessory. So, sign in now to start your journey
           </p>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -163,14 +168,6 @@ function SignIn() {
                   </span>
                 </p>
               </div>
-              {/* <div className="form-control mt-6">
-                <button
-                  className="btn btn-primary"
-                  onClick={handleSignIn}
-                >
-                  Sign in
-                </button>
-              </div>{' '} */}
             </form>
             <div className="divider">OR</div>
             <SocialSignIn />
@@ -179,6 +176,6 @@ function SignIn() {
       </div>
     </div>
   );
-}
+};
 
 export default SignIn;

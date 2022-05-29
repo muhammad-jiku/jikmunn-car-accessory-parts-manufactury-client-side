@@ -4,18 +4,11 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import { toast } from 'react-toastify';
 
-function CarPartsPurchaseModal({ carItemPurchase, setCarItemPurchase }) {
+const CarPartsPurchaseModal = ({ carItemPurchase, setCarItemPurchase }) => {
   const [user] = useAuthState(auth);
 
-  const {
-    _id,
-    // img,
-    price,
-    itemName,
-    minQuantity,
-    // description,
-    avaialableQuantity,
-  } = carItemPurchase;
+  const { _id, price, itemName, minQuantity, avaialableQuantity } =
+    carItemPurchase;
   const {
     register,
     formState: { errors },
@@ -25,8 +18,6 @@ function CarPartsPurchaseModal({ carItemPurchase, setCarItemPurchase }) {
   } = useForm();
 
   const onSubmit = () => {
-    // e.preventDefault();
-    // console.log(data);
     const displayName = watch('displayName').toUpperCase();
     const email = watch('email');
     const address = watch('address').toUpperCase();
@@ -36,15 +27,6 @@ function CarPartsPurchaseModal({ carItemPurchase, setCarItemPurchase }) {
     const remainingQuantity = parseInt(avaialableQuantity) - quantity;
     const price = parseInt(watch('price'));
     const totalPrice = quantity * price;
-    console.log({
-      displayName,
-      email,
-      address,
-      phone,
-      itemName,
-      quantity,
-      price,
-    });
 
     const order = {
       orderName: itemName,
@@ -53,17 +35,13 @@ function CarPartsPurchaseModal({ carItemPurchase, setCarItemPurchase }) {
       address: address,
       quantity: quantity,
       price: totalPrice,
+      phone: phone,
     };
 
     const updatedCarPartDetails = {
-      // _id,
-      // img,
-      // price,
-      // itemName,
-      // minQuantity,
-      // description,
       avaialableQuantity: remainingQuantity,
     };
+
     fetch('https://jikmunn-carmania.herokuapp.com/order', {
       method: 'POST',
       headers: {
@@ -87,7 +65,7 @@ function CarPartsPurchaseModal({ carItemPurchase, setCarItemPurchase }) {
         setCarItemPurchase(null);
       });
   };
-  // console.log(carItemPurchase);
+
   return (
     <div>
       <input type="checkbox" id="purchase-modal" className="modal-toggle" />
@@ -354,6 +332,6 @@ function CarPartsPurchaseModal({ carItemPurchase, setCarItemPurchase }) {
       </div>
     </div>
   );
-}
+};
 
 export default CarPartsPurchaseModal;
