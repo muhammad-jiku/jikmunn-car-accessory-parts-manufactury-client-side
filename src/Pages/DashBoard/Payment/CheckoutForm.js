@@ -9,8 +9,7 @@ const CheckoutForm = ({ order }) => {
   const [clientSecret, setClientSecret] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
 
-  // const { address, orderId, orderName, price, quantity, user, userName, _id } =
-  //   order;
+  const { price, user, userName, _id } = order;
 
   useEffect(() => {
     fetch(`https://jikmunn-carmania.herokuapp.com/create-payment-intent`, {
@@ -19,7 +18,7 @@ const CheckoutForm = ({ order }) => {
         'content-type': 'application/json',
         authorization: `Bearer ${localStorage?.getItem('accessToken')}`,
       },
-      body: JSON.stringify({ price: order?.price }),
+      body: JSON.stringify({ price }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -29,7 +28,7 @@ const CheckoutForm = ({ order }) => {
         }
       })
       .catch((err) => console.log(err));
-  }, [order?.price]);
+  }, [price]);
 
   const stripe = useStripe();
   const elements = useElements();
@@ -61,8 +60,8 @@ const CheckoutForm = ({ order }) => {
         payment_method: {
           card: card,
           billing_details: {
-            name: order?.userName,
-            email: order?.user,
+            name: userName,
+            email: user,
           },
         },
       });
@@ -79,10 +78,10 @@ const CheckoutForm = ({ order }) => {
       setTransactionId(paymentIntent?.id);
       // store payment data on database
       const payment = {
-        orderId: order?._id,
+        orderId: _id,
         transactionId: paymentIntent?.id,
       };
-      fetch(`https://jikmunn-carmania.herokuapp.com/order/${order?._id}`, {
+      fetch(`https://jikmunn-carmania.herokuapp.com/order/${_id}`, {
         method: 'PATCH',
         headers: {
           'content-type': 'application/json',
