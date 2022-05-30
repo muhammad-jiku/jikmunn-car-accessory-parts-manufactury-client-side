@@ -1,11 +1,13 @@
 import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useAuthState, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
+import Spinner from '../../Shared/Spinner/Spinner';
 
 const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
   const [user] = useAuthState(auth);
+  const [updatePro, updating] = useUpdateProfile(auth);
 
   console.log(updateProfile);
   const {
@@ -50,12 +52,15 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        updatePro({ photoURL: img });
         toast.success(`Profile updated successsfully`);
         setUpdateProfile(null);
         refetch();
       })
       .catch((err) => console.log(err));
   };
+
+  if (updating) return <Spinner />;
 
   return (
     <div>
