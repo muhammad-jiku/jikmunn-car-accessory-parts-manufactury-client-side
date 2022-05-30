@@ -24,7 +24,7 @@ const Payment = () => {
     }).then((res) => res.json())
   );
 
-  const { orderName, userName, price, quantity, address } = order;
+  // const { orderName, userName, price, quantity, address } = order;
 
   if (isLoading) return <Spinner />;
 
@@ -33,19 +33,21 @@ const Payment = () => {
       <div className="hero-content flex-col">
         <div className="card w-full max-w-sm bg-base-100 shadow-xl">
           <div className="card-body">
-            <h2 className="card-title">{orderName}</h2>
+            <h2 className="card-title">{order?.orderName}</h2>
             <p>
               Dear{' '}
               <span className="text-primary font-bold uppercase">
-                {userName}
+                {order?.userName}
               </span>{' '}
-              , Your orders for {quantity} pcs of {orderName} are ready to be
-              shipped at {address}
+              , Your orders for {order?.quantity} pcs of {order?.orderName} are
+              ready to be shipped at {order?.address}
             </p>
             <p>
               Please pay only $
-              <span className="text-orange-500 font-semibold">{price}</span> to
-              receive your order from{' '}
+              <span className="text-orange-500 font-semibold">
+                {order?.price}
+              </span>{' '}
+              to receive your order from{' '}
               <span className="text-primary font-semibold">CARMANIA</span>
             </p>
           </div>
