@@ -14,11 +14,11 @@ const useToken = (user) => {
         body: JSON.stringify(currentUser),
       })
         .then((res) => {
-          console.log('res ', res);
+          // console.log('res ', res);
           return res.json();
         })
         .then((data) => {
-          console.log('data inside user token ', data);
+          // console.log('data inside user token ', data);
           const accessToken = data?.accessToken;
           localStorage?.setItem('accessToken', accessToken);
           setToken(accessToken);

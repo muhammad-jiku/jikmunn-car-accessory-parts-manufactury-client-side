@@ -13,7 +13,6 @@ const Portfolio = () => {
   if (isLoading) return <Spinner />;
   return (
     <div className="container mx-auto my-6">
-      {console.log(profile)}
       <div className="flex flex-col items-center lg:flex-row">
         <div className="avatar px-6">
           <div className="w-64 rounded-full">

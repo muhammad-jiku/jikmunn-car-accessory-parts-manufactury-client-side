@@ -1,5 +1,5 @@
 import { signOut } from 'firebase/auth';
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import auth from '../../../../firebase.init';
@@ -11,29 +11,8 @@ function MyOrders() {
   const [user] = useAuthState(auth);
 
   const [confirmDeleteOrderModal, setConfirmDeleteOrderModal] = useState(null);
-  // const [myOrders, setMyOrders] = useState([]);
-  // useEffect(() => {
-  //   fetch(`https://jikmunn-carmania.herokuapp.com/order?user=${user?.email}`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'content-type': 'application/json',
-  //       authorization: `Bearer ${localStorage?.getItem('accessToken')}`,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       console.log('res ', res);
-  //       if (res.status === 401 || res.status === 403) {
-  //         signOut(auth);
-  //         localStorage?.removeItem('accessToken');
-  //       }
-  //       return res.json();
-  //     })
-  //     .then((data) => {
-  //       console.log(data);
-  //       setMyOrders(data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, [user]);
+  
+ 
 
   const {
     data: myOrders,
@@ -47,7 +26,7 @@ function MyOrders() {
         authorization: `Bearer ${localStorage?.getItem('accessToken')}`,
       },
     }).then((res) => {
-      console.log('res ', res);
+      // console.log('res ', res);
       if (res.status === 401 || res.status === 403) {
         signOut(auth);
         localStorage?.removeItem('accessToken');
@@ -59,7 +38,6 @@ function MyOrders() {
   if (isLoading) return <Spinner />;
   return (
     <div>
-      {console.log(myOrders)}
       {myOrders?.length === 0 ? (
         <h1 className="text-center text-2xl text-red-600 my-6">
           You did not order anything yet!

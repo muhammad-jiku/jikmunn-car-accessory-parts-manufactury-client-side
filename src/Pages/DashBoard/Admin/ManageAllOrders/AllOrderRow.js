@@ -28,7 +28,7 @@ const AllOrderRow = ({ order, idx, setConfirmDeleteOrderModal, refetch }) => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data?.modifiedCount > 0) {
           refetch();
           toast.success(`${orderName} is successfully shipped!`);

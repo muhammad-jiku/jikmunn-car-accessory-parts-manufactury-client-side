@@ -19,10 +19,10 @@ const SocialSignIn = () => {
 
   useEffect(() => {
     if (token) {
-      console.log(user);
+      // console.log(user);
       navigate(from, { replace: true });
     }
-  }, [token, user, navigate, from]);
+  }, [token, navigate, from]);
 
   useEffect(() => {
     if (error) {

@@ -9,7 +9,7 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
   const [user] = useAuthState(auth);
   const [updatePro, updating] = useUpdateProfile(auth);
 
-  console.log(updateProfile);
+  // console.log(updateProfile);
   const {
     register,
     formState: { errors },
@@ -25,14 +25,7 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
     const location = watch('location');
     const linkedIn = watch('linkedIn');
     const img = watch('img');
-    console.log({
-      displayName,
-      email,
-      location,
-      phone,
-      linkedIn,
-      education,
-    });
+
 
     const updateProfile = {
       displayName: displayName,

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React  from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../../Shared/Spinner/Spinner';
@@ -6,13 +6,7 @@ import Spinner from '../../Shared/Spinner/Spinner';
 function CarParts() {
   const navigate = useNavigate();
 
-  // const [carParts, setCarParts] = useState([]);
-  // useEffect(() => {
-  //   fetch('https://jikmunn-carmania.herokuapp.com/car-parts')
-  //     .then((res) => res.json())
-  //     .then((data) => setCarParts(data))
-  //     .catch((err) => console.log(err));
-  // });
+
 
   const { data: carParts, isLoading } = useQuery('carParts', () =>
     fetch('https://jikmunn-carmania.herokuapp.com/car-parts').then((res) =>
@@ -22,13 +16,9 @@ function CarParts() {
 
   if (isLoading) return <Spinner />;
 
-  // const handlePlaceOrder = () => {
-  // navigate(`/purchase/${carPart?._id}`);
-  // }
 
   return (
     <div className="container mx-auto my-12">
-      {/* {console.log(carParts)} */}
       <h1 className="text-center text-3xl text-primary my-6 uppercase italic">
         Car ACCESSORY PARTS YOU MAY PURCHASE
       </h1>

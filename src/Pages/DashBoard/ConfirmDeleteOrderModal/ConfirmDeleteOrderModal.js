@@ -9,7 +9,7 @@ const ConfirmDeleteOrderModal = ({
   const { _id, orderName } = confirmDeleteOrderModal;
 
   const handleDelete = (id) => {
-    console.log(confirmDeleteOrderModal);
+    // console.log(confirmDeleteOrderModal);
     fetch(`https://jikmunn-carmania.herokuapp.com/order/${id}`, {
       method: 'DELETE',
       headers: {

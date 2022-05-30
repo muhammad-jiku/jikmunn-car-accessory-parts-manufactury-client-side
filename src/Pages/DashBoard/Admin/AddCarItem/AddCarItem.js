@@ -38,7 +38,7 @@ const AddCarItem = () => {
             img: img,
           };
           // send accessory details to database
-          console.log('accessory details ', accessory);
+          // console.log('accessory details ', accessory);
           fetch(`https://jikmunn-carmania.herokuapp.com/car-part`, {
             method: 'POST',
             headers: {
@@ -49,7 +49,7 @@ const AddCarItem = () => {
           })
             .then((res) => res.json())
             .then((accesso) => {
-              console.log('accessory: ', accesso);
+              // console.log('accessory: ', accesso);
               if (accesso?.insertedId) {
                 toast.success('New accessory is added');
                 reset();
@@ -59,7 +59,7 @@ const AddCarItem = () => {
             })
             .catch((err) => console.log(err));
         }
-        console.log('image address ', result);
+        // console.log('image address ', result);
       })
       .catch((err) => console.log(err));
 

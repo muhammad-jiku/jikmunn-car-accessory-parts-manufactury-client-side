@@ -9,7 +9,7 @@ const ConfirmDeleteCarAccessoryModal = ({
   const { _id, itemName } = confirmDeleteAccessoryModal;
 
   const handleDelete = (id) => {
-    console.log(confirmDeleteAccessoryModal);
+    // console.log(confirmDeleteAccessoryModal);
     fetch(`https://jikmunn-carmania.herokuapp.com/car-parts/${id}`, {
       method: 'DELETE',
       headers: {
@@ -18,7 +18,7 @@ const ConfirmDeleteCarAccessoryModal = ({
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data?.acknowledged) {
           toast.success(
             `Dear Admin, ${itemName} is removed from car parts accessory`

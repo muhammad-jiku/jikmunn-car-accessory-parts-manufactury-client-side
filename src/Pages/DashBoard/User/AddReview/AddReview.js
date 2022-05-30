@@ -38,7 +38,6 @@ const AddReview = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log('review ', data);
         if (data?.insertedId) {
           toast.success('Your review successfully added');
           reset();

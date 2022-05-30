@@ -22,7 +22,7 @@ const CheckoutForm = ({ order }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data?.clientSecret) {
           setClientSecret(data?.clientSecret);
         }
@@ -67,7 +67,7 @@ const CheckoutForm = ({ order }) => {
       });
 
     if (error || intentError) {
-      console.log(error, intentError);
+      // console.log(error, intentError);
       setCardError(error?.message || intentError?.message);
       success('');
       setIsProcessing(false);

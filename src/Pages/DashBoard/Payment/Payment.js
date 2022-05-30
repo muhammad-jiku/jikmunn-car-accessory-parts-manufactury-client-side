@@ -30,7 +30,6 @@ const Payment = () => {
 
   return (
     <div className="hero min-h-screen bg-base-100">
-      {console.log(order)}
       <div className="hero-content flex-col">
         <div className="card w-full max-w-sm bg-base-100 shadow-xl">
           <div className="card-body">

@@ -33,10 +33,10 @@ const SignIn = () => {
 
   useEffect(() => {
     if (token) {
-      console.log(user);
+      // console.log(user);
       navigate(from, { replace: true });
     }
-  }, [token, user, navigate, from]);
+  }, [token, navigate, from]);
 
   useEffect(() => {
     if (signInerror) {
@@ -50,13 +50,13 @@ const SignIn = () => {
   const onSubmit = async () => {
     const email = watch('email');
     const password = watch('password');
-    console.log(email, password);
+    // console.log(email, password);
     await signInWithEmailAndPassword(email, password);
   };
 
   const handlePasswordReset = async () => {
     const email = watch('email');
-    console.log(email);
+    // console.log(email);
     if (email) {
       await sendPasswordResetEmail(email);
       toast.success('Reset email message is sent');

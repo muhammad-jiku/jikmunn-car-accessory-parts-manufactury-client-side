@@ -21,7 +21,7 @@ const ManageAllOrders = () => {
         authorization: `Bearer ${localStorage?.getItem('accessToken')}`,
       },
     }).then((res) => {
-      console.log('res ', res);
+      // console.log('res ', res);
       if (res.status === 401 || res.status === 403) {
         signOut(auth);
         localStorage?.removeItem('accessToken');
@@ -54,7 +54,6 @@ const ManageAllOrders = () => {
                 </tr>
               </thead>
               <tbody>
-                {console.log(orders)}
                 {orders
                   ?.slice(0)
                   ?.reverse()
