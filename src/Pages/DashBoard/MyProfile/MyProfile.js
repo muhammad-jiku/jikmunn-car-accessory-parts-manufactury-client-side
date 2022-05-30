@@ -71,7 +71,9 @@ const MyProfile = () => {
         </div>
         <label
           htmlFor="update-modal"
-          onClick={() => setUpdateProfile(userProfile)}
+          onClick={() => {
+            setUpdateProfile(userProfile);
+          }}
           className="btn btn-primary my-6 modal-button"
         >
           update Profile

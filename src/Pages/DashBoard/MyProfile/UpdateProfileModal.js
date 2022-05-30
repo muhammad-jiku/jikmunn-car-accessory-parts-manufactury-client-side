@@ -50,9 +50,9 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
       body: JSON.stringify(updateProfile),
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(async (data) => {
         console.log(data);
-        updatePro({ photoURL: img });
+        await updatePro({ photoURL: img });
         toast.success(`Profile updated successsfully`);
         setUpdateProfile(null);
         refetch();
@@ -100,7 +100,7 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
             <div className="form-control mb-4">
               <input
                 type="text"
-                placeholder="Education"
+                defaultValue={updateProfile?.education || 'Education'}
                 className="input input-bordered input-primary"
                 {...register('education', {
                   required: {
@@ -125,7 +125,7 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
             <div className="form-control mb-4">
               <input
                 type="tel"
-                placeholder="Phone"
+                defaultValue={updateProfile?.phone || 'Phone'}
                 className="input input-bordered input-primary"
                 {...register('phone', {
                   required: {
@@ -143,7 +143,7 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
             <div className="form-control mb-4">
               <input
                 type="text"
-                placeholder="location"
+                defaultValue={updateProfile?.location || 'location'}
                 className="input input-bordered input-primary"
                 {...register('location', {
                   required: {
@@ -161,7 +161,7 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
             <div className="form-control mb-4">
               <input
                 type="text"
-                placeholder="linkedIn"
+                defaultValue={updateProfile?.linkedIn || 'linkedIn'}
                 className="input input-bordered input-primary"
                 {...register('linkedIn', {
                   required: {
