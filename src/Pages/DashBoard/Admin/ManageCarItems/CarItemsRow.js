@@ -32,7 +32,7 @@ const CarItemsRow = ({ carItem, idx, setConfirmDeleteAccessoryModal }) => {
           className="btn btn-error text-white font-bold"
           onClick={() => setConfirmDeleteAccessoryModal(carItem)}
         >
-          Cancel
+          Remove
         </label>
       </th>
     </tr>
