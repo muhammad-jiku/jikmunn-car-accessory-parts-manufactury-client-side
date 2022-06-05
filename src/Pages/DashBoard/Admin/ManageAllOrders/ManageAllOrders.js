@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import auth from '../../../../firebase.init';
 import Spinner from '../../../Shared/Spinner/Spinner';
-import ConfirmDeleteOrderModal from '../../ConfirmDeleteOrderModal/ConfirmDeleteOrderModal';
+import DeleteOrder from '../../DeleteOrder/DeleteOrder';
 import AllOrderRow from './AllOrderRow';
 
 const ManageAllOrders = () => {
@@ -70,7 +70,7 @@ const ManageAllOrders = () => {
             </table>
           </div>{' '}
           {confirmDeleteOrderModal && (
-            <ConfirmDeleteOrderModal
+            <DeleteOrder
               refetch={refetch}
               confirmDeleteOrderModal={confirmDeleteOrderModal}
               setConfirmDeleteOrderModal={setConfirmDeleteOrderModal}

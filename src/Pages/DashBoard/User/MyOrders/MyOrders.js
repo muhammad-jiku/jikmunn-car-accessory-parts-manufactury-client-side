@@ -1,18 +1,16 @@
 import { signOut } from 'firebase/auth';
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import auth from '../../../../firebase.init';
 import OrderRow from './OrderRow';
 import Spinner from '../../../Shared/Spinner/Spinner';
-import ConfirmDeleteOrderModal from '../../ConfirmDeleteOrderModal/ConfirmDeleteOrderModal';
+import DeleteOrder from '../../DeleteOrder/DeleteOrder';
 
 function MyOrders() {
   const [user] = useAuthState(auth);
 
   const [confirmDeleteOrderModal, setConfirmDeleteOrderModal] = useState(null);
-  
- 
 
   const {
     data: myOrders,
@@ -75,7 +73,7 @@ function MyOrders() {
             </table>
           </div>
           {confirmDeleteOrderModal && (
-            <ConfirmDeleteOrderModal
+            <DeleteOrder
               refetch={refetch}
               confirmDeleteOrderModal={confirmDeleteOrderModal}
               setConfirmDeleteOrderModal={setConfirmDeleteOrderModal}

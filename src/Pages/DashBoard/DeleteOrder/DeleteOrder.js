@@ -1,16 +1,16 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-const ConfirmDeleteCarAccessoryModal = ({
+const DeleteOrder = ({
   refetch,
-  confirmDeleteAccessoryModal,
-  setConfirmDeleteAccessoryModal,
+  confirmDeleteOrderModal,
+  setConfirmDeleteOrderModal,
 }) => {
-  const { _id, itemName } = confirmDeleteAccessoryModal;
+  const { _id, orderName } = confirmDeleteOrderModal;
 
   const handleDelete = (id) => {
-    // console.log(confirmDeleteAccessoryModal);
-    fetch(`https://jikmunn-carmania.herokuapp.com/car-parts/${id}`, {
+    // console.log(confirmDeleteOrderModal);
+    fetch(`https://jikmunn-carmania.herokuapp.com/order/${id}`, {
       method: 'DELETE',
       headers: {
         authorization: `Bearer ${localStorage?.getItem('accessToken')}`,
@@ -18,12 +18,10 @@ const ConfirmDeleteCarAccessoryModal = ({
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         if (data?.acknowledged) {
-          toast.success(
-            `Dear Admin, ${itemName} is removed from car parts accessory`
-          );
-          setConfirmDeleteAccessoryModal(null);
+          toast.success(`${orderName} is removed from your order collection`);
+          setConfirmDeleteOrderModal(null);
           refetch();
         }
       })
@@ -36,9 +34,9 @@ const ConfirmDeleteCarAccessoryModal = ({
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <h3 className="font-bold text-lg text-red-700">
-            Dear Admin, are you sure want to remove {itemName} from car items
-            accessory of CARMANIA?
+            are you sure want to remove {orderName} from orders collection?
           </h3>
+
           <div className="modal-action">
             <button
               className="btn btn-error text-white font-bold"
@@ -56,4 +54,4 @@ const ConfirmDeleteCarAccessoryModal = ({
   );
 };
 
-export default ConfirmDeleteCarAccessoryModal;
+export default DeleteOrder;
