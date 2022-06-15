@@ -16,12 +16,12 @@ const CarPartsPurchase = () => {
   }, [carItemId, carItem]);
 
   return (
-    <div className="p-10 bg-base-300">
+    <div className="p-10">
       {!carItem ? (
         <Spinner />
       ) : (
         <>
-          <div className="flex flex-col lg:flex-row items-center bg-base-100 p-10">
+          <div className="flex flex-col lg:flex-row items-center p-10">
             <div className="flex-1">
               <img src={carItem?.img} alt={carItem?.itemName} />
             </div>

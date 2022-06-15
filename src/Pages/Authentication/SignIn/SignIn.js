@@ -77,7 +77,7 @@ const SignIn = () => {
             part accessory. So, sign in now to start your journey
           </p>
         </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl">
           <div className="card-body">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="form-control mb-4">
@@ -100,6 +100,7 @@ const SignIn = () => {
                       message: 'Invalid Email',
                     },
                   })}
+                  style={{ backgroundColor: 'white' }}
                 />
                 <p className="text-red-500 font-semibold">
                   {errors.email?.type === 'required' && (
@@ -130,6 +131,7 @@ const SignIn = () => {
                       message: 'Password must be at least six letters',
                     },
                   })}
+                  style={{ backgroundColor: 'white' }}
                 />
                 <p className="text-red-500 font-semibold">
                   {errors.password?.type === 'required' && (

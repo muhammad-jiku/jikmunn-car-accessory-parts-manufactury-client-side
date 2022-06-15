@@ -26,7 +26,6 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
     const linkedIn = watch('linkedIn');
     const img = watch('img');
 
-
     const updateProfile = {
       displayName: displayName,
       email: email,
@@ -59,7 +58,10 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
     <div>
       <input type="checkbox" id="update-modal" className="modal-toggle" />
       <div className="modal modal-bottom sm:modal-middle z-10">
-        <div className="modal-box relative">
+        <div
+          className="modal-box relative"
+          style={{ backgroundColor: '#F3EEEE', color: 'black' }}
+        >
           <label
             htmlFor="update-modal"
             className="btn btn-sm btn-circle absolute right-2 top-2"
@@ -78,6 +80,7 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
                 {...register('displayName')}
                 readOnly
                 required
+                style={{ backgroundColor: '#F3EEEE', color: 'black' }}
               />
             </div>
             <div className="form-control mb-4">
@@ -88,6 +91,7 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
                 {...register('email')}
                 readOnly
                 required
+                style={{ backgroundColor: '#F3EEEE', color: 'black' }}
               />
             </div>
             <div className="form-control mb-4">
@@ -105,6 +109,7 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
                     message: 'Education can not be more than 30 letters',
                   },
                 })}
+                style={{ backgroundColor: '#F3EEEE', color: 'black' }}
               />
               <p className="text-red-500 font-semibold">
                 {errors.education?.type === 'required' && (
@@ -126,6 +131,7 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
                     message: 'Phone Number is required',
                   },
                 })}
+                style={{ backgroundColor: '#F3EEEE', color: 'black' }}
               />
               <p className="text-red-500 font-semibold">
                 {errors.phone?.type === 'required' && (
@@ -144,6 +150,7 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
                     message: 'location is required',
                   },
                 })}
+                style={{ backgroundColor: '#F3EEEE', color: 'black' }}
               />
               <p className="text-red-500 font-semibold">
                 {errors?.location?.type === 'required' && (
@@ -162,6 +169,7 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
                     message: 'linkedIn is required',
                   },
                 })}
+                style={{ backgroundColor: '#F3EEEE', color: 'black' }}
               />
               <p className="text-red-500 font-semibold">
                 {errors.linkedIn?.type === 'required' && (
@@ -179,6 +187,7 @@ const UpdateProfileModal = ({ refetch, updateProfile, setUpdateProfile }) => {
                 {...register('img', {
                   required: { value: true, message: 'Image is required' },
                 })}
+                style={{ backgroundColor: '#F3EEEE', color: 'black' }}
               />
               <p className="text-red-500 font-semibold">
                 {errors.img?.type === 'required' && (

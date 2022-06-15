@@ -5,7 +5,7 @@ import NotFoundImg from '../../../Images/NotFound.gif';
 const NotFound = () => {
   const navigate = useNavigate();
   return (
-    <div className="hero min-h-screen bg-base-100">
+    <div className="hero min-h-screen">
       <div className="hero-content text-center">
         <div className="max-w-md">
           <img src={NotFoundImg} alt="not found" />

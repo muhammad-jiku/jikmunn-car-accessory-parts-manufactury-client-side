@@ -1,12 +1,10 @@
-import React  from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../../Shared/Spinner/Spinner';
 
 function CarParts() {
   const navigate = useNavigate();
-
-
 
   const { data: carParts, isLoading } = useQuery('carParts', () =>
     fetch('https://jikmunn-carmania.herokuapp.com/car-parts').then((res) =>
@@ -16,7 +14,6 @@ function CarParts() {
 
   if (isLoading) return <Spinner />;
 
-
   return (
     <div className="container mx-auto my-12">
       <h1 className="text-center text-3xl text-primary my-6 uppercase italic">
@@ -24,7 +21,7 @@ function CarParts() {
       </h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {carParts?.slice(-3)?.map((carPart) => (
-          <div className="card bg-base-100 shadow-xl" key={carPart?._id}>
+          <div className="card shadow-xl" key={carPart?._id}>
             <figure className="h-60">
               <img
                 src={carPart?.img}

@@ -30,9 +30,15 @@ const MakeAdmin = () => {
             <table className="table w-full">
               <thead>
                 <tr>
-                  <th></th>
-                  <th>Email</th>
-                  <th>Actions</th>
+                  <th
+                    style={{ backgroundColor: '#F3EEEE', color: 'black' }}
+                  ></th>
+                  <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>
+                    Email
+                  </th>
+                  <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>
+                    Actions
+                  </th>
                 </tr>
               </thead>
               <tbody>

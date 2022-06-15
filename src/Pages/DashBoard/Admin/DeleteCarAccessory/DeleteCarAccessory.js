@@ -1,16 +1,16 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-const DeleteOrder = ({
+const DeleteCarAccessory = ({
   refetch,
-  confirmDeleteOrderModal,
-  setConfirmDeleteOrderModal,
+  confirmDeleteAccessoryModal,
+  setConfirmDeleteAccessoryModal,
 }) => {
-  const { _id, orderName } = confirmDeleteOrderModal;
+  const { _id, itemName } = confirmDeleteAccessoryModal;
 
   const handleDelete = (id) => {
-    // console.log(confirmDeleteOrderModal);
-    fetch(`https://jikmunn-carmania.herokuapp.com/order/${id}`, {
+    // console.log(confirmDeleteAccessoryModal);
+    fetch(`https://jikmunn-carmania.herokuapp.com/car-parts/${id}`, {
       method: 'DELETE',
       headers: {
         authorization: `Bearer ${localStorage?.getItem('accessToken')}`,
@@ -18,10 +18,12 @@ const DeleteOrder = ({
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data?.acknowledged) {
-          toast.success(`${orderName} is removed from your order collection`);
-          setConfirmDeleteOrderModal(null);
+          toast.success(
+            `Dear Admin, ${itemName} is removed from car parts accessory`
+          );
+          setConfirmDeleteAccessoryModal(null);
           refetch();
         }
       })
@@ -29,17 +31,17 @@ const DeleteOrder = ({
   };
 
   return (
-    <div style={{ backgroundColor: '#F3EEEE', color: 'black' }}>
+    <div>
       <input type="checkbox" id="confirm-modal" className="modal-toggle" />
       <div className="modal modal-bottom sm:modal-middle">
         <div
           className="modal-box"
-          style={{ backgroundColor: '#F3EEEE', color: 'black' }}
+          style={{ backgroundColor: 'white', color: 'black' }}
         >
           <h3 className="font-bold text-lg text-red-700">
-            are you sure want to remove {orderName} from orders collection?
+            Dear Admin, are you sure want to remove {itemName} from car items
+            accessory of CARMANIA?
           </h3>
-
           <div className="modal-action">
             <button
               className="btn btn-error text-white font-bold"
@@ -57,4 +59,4 @@ const DeleteOrder = ({
   );
 };
 
-export default DeleteOrder;
+export default DeleteCarAccessory;

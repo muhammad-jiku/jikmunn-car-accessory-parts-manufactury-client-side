@@ -27,15 +27,15 @@ const AdminRow = ({ user, idx, refetch }) => {
   };
   return (
     <tr>
-      <th>{idx + 1}</th>
+      <th style={{ backgroundColor: '#F3EEEE' }}>{idx + 1}</th>
 
-      <th>{email}</th>
+      <th style={{ backgroundColor: '#F3EEEE' }}>{email}</th>
 
-      <th>
+      <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>
         {role === 'admin' ? (
           <>
-            <button className="btn font-bold uppercase text-white" disabled>
-              Admin
+            <button className="btn font-bold uppercase" disabled>
+              <span className="text-black"> Admin</span>
             </button>{' '}
             {/* <button className="btn font-bold uppercase text-white ml-2">
               Remove Admin

@@ -67,7 +67,7 @@ const AddCarItem = () => {
   };
   return (
     <div>
-      <div className="container mx-auto px-4 lg:px-64 card bg-base-100">
+      <div className="container mx-auto px-4 lg:px-64 card  ">
         <div className="card-body">
           <h1 className="text-2xl text-center">Add new car part accessory</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -91,6 +91,7 @@ const AddCarItem = () => {
                     message: 'Accessory can not be more than 35 letters',
                   },
                 })}
+                style={{ backgroundColor: '#F3EEEE', color: 'black' }}
               />
               <p className="text-red-500 font-semibold">
                 {errors?.itemName?.type === 'required' && (
@@ -115,6 +116,7 @@ const AddCarItem = () => {
                     message: 'Price is required',
                   },
                 })}
+                style={{ backgroundColor: '#F3EEEE', color: 'black' }}
               />
               <p className="text-red-500 font-semibold">
                 {errors.price?.type === 'required' && (
@@ -138,6 +140,7 @@ const AddCarItem = () => {
                     message: 'Avaialable Quantity is required',
                   },
                 })}
+                style={{ backgroundColor: '#F3EEEE', color: 'black' }}
               />
               <p className="text-red-500 font-semibold">
                 {errors.avaialableQuantity?.type === 'required' && (
@@ -161,6 +164,7 @@ const AddCarItem = () => {
                     message: 'Minimum Quantity is required',
                   },
                 })}
+                style={{ backgroundColor: '#F3EEEE', color: 'black' }}
               />
               <p className="text-red-500 font-semibold">
                 {errors.minQuantity?.type === 'required' && (
@@ -188,6 +192,7 @@ const AddCarItem = () => {
                     message: 'description can not be more than 300 letters',
                   },
                 })}
+                style={{ backgroundColor: '#F3EEEE', color: 'black' }}
               />
               <p className="text-red-500 font-semibold">
                 {errors.description?.type === 'required' && (
@@ -208,6 +213,7 @@ const AddCarItem = () => {
                 {...register('img', {
                   required: { value: true, message: 'Image is required' },
                 })}
+                style={{ backgroundColor: '#F3EEEE', color: 'black' }}
               />
               <p className="text-red-500 font-semibold">
                 {errors?.img?.type === 'required' && (

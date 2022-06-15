@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Spinner from '../../../Shared/Spinner/Spinner';
-import ConfirmDeleteCarAccessoryModal from '../ConfirmDeleteCarAccessoryModal/ConfirmDeleteCarAccessoryModal';
+import DeleteCarAccessory from '../DeleteCarAccessory/DeleteCarAccessory';
 import CarItemsRow from './CarItemsRow';
 
 const ManageCarItems = () => {
@@ -31,13 +31,27 @@ const ManageCarItems = () => {
             <table className="table w-full">
               <thead>
                 <tr>
-                  <th></th>
-                  <th>Image</th>
-                  <th>Item</th>
-                  <th>Quantity (available)</th>
-                  <th>Quantity (minimum to order)</th>
-                  <th>Price (per item)</th>
-                  <th>Actions</th>
+                  <th
+                    style={{ backgroundColor: '#F3EEEE', color: 'black' }}
+                  ></th>
+                  <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>
+                    Image
+                  </th>
+                  <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>
+                    Item
+                  </th>
+                  <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>
+                    Quantity (available)
+                  </th>
+                  <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>
+                    Quantity (minimum to order)
+                  </th>
+                  <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>
+                    Price (per item)
+                  </th>
+                  <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>
+                    Actions
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -58,7 +72,7 @@ const ManageCarItems = () => {
             </table>
           </div>{' '}
           {confirmDeleteAccessoryModal && (
-            <ConfirmDeleteCarAccessoryModal
+            <DeleteCarAccessory
               refetch={refetch}
               confirmDeleteAccessoryModal={confirmDeleteAccessoryModal}
               setConfirmDeleteAccessoryModal={setConfirmDeleteAccessoryModal}

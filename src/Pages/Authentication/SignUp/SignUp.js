@@ -57,7 +57,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="hero min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Sign up now!</h1>
@@ -66,7 +66,7 @@ const SignUp = () => {
             part accessory. So, sign up now to start your journey
           </p>
         </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl">
           <div className="card-body">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="form-control mb-4">
@@ -89,6 +89,7 @@ const SignUp = () => {
                       message: 'Name can not be more than 20 letters',
                     },
                   })}
+                  style={{ backgroundColor: 'white' }}
                 />
                 <p className="text-red-500 font-semibold">
                   {errors?.displayName?.type === 'required' && (
@@ -120,6 +121,7 @@ const SignUp = () => {
                       message: 'Invalid Email',
                     },
                   })}
+                  style={{ backgroundColor: 'white' }}
                 />
                 <p className="text-red-500 font-semibold">
                   {errors.email?.type === 'required' && (
@@ -151,6 +153,7 @@ const SignUp = () => {
                       message: 'Password must be at least six letters',
                     },
                   })}
+                  style={{ backgroundColor: 'white' }}
                 />
                 <p className="text-red-500 font-semibold">
                   {errors.password?.type === 'required' && (

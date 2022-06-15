@@ -8,7 +8,10 @@ import React from 'react';
 
 function BusinessSummary() {
   return (
-    <div className="stats stats-vertical lg:stats-horizontal shadow w-full my-4">
+    <div
+      className="stats stats-vertical lg:stats-horizontal shadow w-full my-4"
+      style={{ backgroundColor: 'white', color: 'black' }}
+    >
       <div className="stat">
         <div className="stat-title">
           <FontAwesomeIcon icon={faFlag} style={{ color: 'brown' }} size="3x" />

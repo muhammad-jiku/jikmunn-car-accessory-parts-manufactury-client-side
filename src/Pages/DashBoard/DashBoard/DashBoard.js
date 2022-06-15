@@ -14,7 +14,7 @@ function DashBoard() {
         type="checkbox"
         className="drawer-toggle"
       />
-      <div className="drawer-content bg-base-100">
+      <div className="drawer-content">
         <h1 className="text-2xl uppercase text-primary mt-4">
           here is {user?.displayName}'s dashboard
         </h1>
@@ -25,7 +25,10 @@ function DashBoard() {
           htmlFor="dashboard-drawer-sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 lg:bg-transparent text-base-content">
+        <ul
+          className="menu p-4 overflow-y-auto w-80 lg:bg-transparent text-black"
+          // style={{ backgroundColor: '#F3EEEE', color: 'black' }}
+        >
           <li>
             {' '}
             <Link to="/dashboard">My Profile</Link>

@@ -29,9 +29,9 @@ const Payment = () => {
   if (isLoading) return <Spinner />;
 
   return (
-    <div className="hero min-h-screen bg-base-100">
+    <div className="hero min-h-screen  ">
       <div className="hero-content flex-col">
-        <div className="card w-full max-w-sm bg-base-100 shadow-xl">
+        <div className="card w-full max-w-sm   shadow-xl">
           <div className="card-body">
             <h2 className="card-title">{order?.orderName}</h2>
             <p>
@@ -52,7 +52,7 @@ const Payment = () => {
             </p>
           </div>
         </div>
-        <div className="card w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="card w-full max-w-sm shadow-2xl  ">
           <div className="card-body">
             <Elements stripe={stripePromise}>
               <CheckoutForm order={order} />

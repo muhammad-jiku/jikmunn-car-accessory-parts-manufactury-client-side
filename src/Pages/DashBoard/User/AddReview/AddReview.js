@@ -50,7 +50,7 @@ const AddReview = () => {
 
   return (
     <div>
-      <div className="container mx-auto px-4 lg:px-64 card bg-base-100">
+      <div className="container mx-auto px-4 lg:px-64 card  ">
         <div className="card-body">
           {' '}
           <h1 className="text-2xl text-center">Add Review</h1>
@@ -66,6 +66,7 @@ const AddReview = () => {
                 {...register('displayName')}
                 readOnly
                 required
+                style={{ backgroundColor: 'white' }}
               />
               <p className="text-red-500 font-semibold">
                 {errors?.displayName?.type === 'required' && (
@@ -97,6 +98,7 @@ const AddReview = () => {
                     message: `You can not rate above 5 star`,
                   },
                 })}
+                style={{ backgroundColor: 'white' }}
               />
               <p className="text-red-500 font-semibold">
                 {errors.rating?.type === 'required' && (
@@ -130,6 +132,7 @@ const AddReview = () => {
                     message: 'Review can not be more than 250 letters',
                   },
                 })}
+                style={{ backgroundColor: 'white' }}
               />
               <p className="text-red-500 font-semibold">
                 {errors.review?.type === 'required' && (
@@ -155,6 +158,7 @@ const AddReview = () => {
                 })}
                 readOnly
                 required
+                style={{ backgroundColor: 'white' }}
               />
               <p className="text-red-500 font-semibold">
                 {errors?.img?.type === 'required' && (

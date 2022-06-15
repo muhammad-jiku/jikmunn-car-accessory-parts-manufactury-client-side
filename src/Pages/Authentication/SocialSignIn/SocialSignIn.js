@@ -26,7 +26,7 @@ const SocialSignIn = () => {
 
   useEffect(() => {
     if (error) {
-      toast.error('Social sign in failed');
+      toast.error('Google sign in failed');
     }
     return;
   }, [error]);

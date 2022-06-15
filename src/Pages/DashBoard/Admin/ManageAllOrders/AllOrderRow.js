@@ -39,13 +39,13 @@ const AllOrderRow = ({ order, idx, setConfirmDeleteOrderModal, refetch }) => {
 
   return (
     <tr>
-      <th>{idx + 1}</th>
-      <th>{orderName}</th>
-      <th>{quantity}</th>
-      <th>{price}</th>
-      <th>{user}</th>
-      <th>{address}</th>
-      <th>
+      <th style={{ backgroundColor: 'white' }}>{idx + 1}</th>
+      <th style={{ backgroundColor: 'white' }}>{orderName}</th>
+      <th style={{ backgroundColor: 'white' }}>{quantity}</th>
+      <th style={{ backgroundColor: 'white' }}>{price}</th>
+      <th style={{ backgroundColor: 'white' }}>{user}</th>
+      <th style={{ backgroundColor: 'white' }}>{address}</th>
+      <th style={{ backgroundColor: 'white' }}>
         {transactionId ? (
           <>
             <h1 className="text-xs text-success">{status}</h1>
@@ -56,12 +56,12 @@ const AllOrderRow = ({ order, idx, setConfirmDeleteOrderModal, refetch }) => {
           </>
         )}
       </th>
-      <th>
+      <th style={{ backgroundColor: 'white' }}>
         {paid ? (
           <>
             {status === 'shipped' && (
-              <button className="btn font-bold uppercase text-white" disabled>
-                {status}
+              <button className="btn font-bold uppercase" disabled>
+                <span className="text-success">{status}</span>
               </button>
             )}
             {status === 'pending' && (

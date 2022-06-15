@@ -24,7 +24,11 @@ const CarParts = () => {
           ?.slice(0)
           ?.reverse()
           ?.map((carPart) => (
-            <div className="card bg-base-100 shadow-xl" key={carPart?._id}>
+            <div
+              className="card shadow-xl"
+              key={carPart?._id}
+              style={{ backgroundColor: '#FFFFFF', color: 'black' }}
+            >
               <figure className="h-60">
                 <img src={carPart?.img} alt={carPart?.itemName} />
               </figure>

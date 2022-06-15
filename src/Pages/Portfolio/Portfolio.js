@@ -55,10 +55,7 @@ const Portfolio = () => {
         </h1>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {profile?.map((pro) => (
-            <div
-              className="card card-compact bg-base-100 shadow-xl"
-              key={pro?._id}
-            >
+            <div className="card card-compact shadow-xl" key={pro?._id}>
               <a href={pro?.siteLink}>
                 <figure>
                   <img src={pro?.img} alt={pro?.projectName} />

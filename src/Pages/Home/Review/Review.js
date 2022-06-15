@@ -23,10 +23,7 @@ function Review() {
         ?.slice(0)
         ?.reverse()
         ?.map((review) => (
-          <div
-            className="card bg-base-100 border-2 border-purple-700"
-            key={review?._id}
-          >
+          <div className="card border-2 border-purple-700" key={review?._id}>
             {/* <SwiperSlide> */}
             <div className="card-body font-bold">
               <div className="card-actions justify-start">

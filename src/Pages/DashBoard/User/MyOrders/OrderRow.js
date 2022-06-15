@@ -15,16 +15,21 @@ const OrderRow = ({ order, idx, setConfirmDeleteOrderModal }) => {
 
   return (
     <tr>
-      <th>{idx + 1}</th>
-      <th>{orderName}</th>
-      <th>{quantity}</th>
-      <th>{price}</th>
-      <th>{user}</th>
-      <th>{address}</th>
-      <th>
+      <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>{idx + 1}</th>
+      <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>
+        {orderName}
+      </th>
+      <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>{quantity}</th>
+      <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>{price}</th>
+      <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>{user}</th>
+      <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>{address}</th>
+      <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>
         {paid ? (
           <>
-            <div className="uppercase text-success font-bold">
+            <div
+              className="uppercase text-success font-bold"
+              style={{ backgroundColor: '#F3EEEE', color: 'black' }}
+            >
               <span className="mr-2">PAid</span>
               <span className="text-xs text-black">{transactionId}</span>
             </div>

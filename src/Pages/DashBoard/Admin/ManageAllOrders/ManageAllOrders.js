@@ -43,14 +43,30 @@ const ManageAllOrders = () => {
             <table className="table w-full">
               <thead>
                 <tr>
-                  <th></th>
-                  <th>Order</th>
-                  <th>Quantity</th>
-                  <th>Price</th>
-                  <th>Owner</th>
-                  <th>Address</th>
-                  <th>Status</th>
-                  <th>Actions</th>
+                  <th
+                    style={{ backgroundColor: '#F3EEEE', color: 'black' }}
+                  ></th>
+                  <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>
+                    Order
+                  </th>
+                  <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>
+                    Quantity
+                  </th>
+                  <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>
+                    Price
+                  </th>
+                  <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>
+                    Owner
+                  </th>
+                  <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>
+                    Address
+                  </th>
+                  <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>
+                    Status
+                  </th>
+                  <th style={{ backgroundColor: '#F3EEEE', color: 'black' }}>
+                    Actions
+                  </th>
                 </tr>
               </thead>
               <tbody>

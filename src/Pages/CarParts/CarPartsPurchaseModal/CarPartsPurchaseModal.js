@@ -69,18 +69,31 @@ const CarPartsPurchaseModal = ({ carItemPurchase, setCarItemPurchase }) => {
   return (
     <div>
       <input type="checkbox" id="purchase-modal" className="modal-toggle" />
-      <div className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box relative">
+      <div
+        className="modal modal-bottom sm:modal-middle"
+        style={{ backgroundColor: '#FFFFFF', color: 'black' }}
+      >
+        <div
+          className="modal-box relative"
+          style={{ backgroundColor: '#FFFFFF', color: 'black' }}
+        >
           <label
             htmlFor="purchase-modal"
             className="btn btn-sm btn-circle absolute right-2 top-2"
+            style={{ backgroundColor: '#FFFFFF', color: 'black' }}
           >
             ✕
           </label>
-          <h1 className="text-2xl text-secondary text-center p-4">
+          <h1
+            className="text-2xl text-secondary text-center p-4"
+            style={{ backgroundColor: '#FFFFFF' }}
+          >
             Order for {itemName}
           </h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            style={{ backgroundColor: '#FFFFFF', color: 'black' }}
+          >
             <div className="form-control mb-4">
               {/* <label className="label">
                 <span className="label-text text-primary font-bold">Name</span>
@@ -104,6 +117,7 @@ const CarPartsPurchaseModal = ({ carItemPurchase, setCarItemPurchase }) => {
                 readOnly
                 required
                 // disabled
+                style={{ backgroundColor: '#FFFFFF', color: 'black' }}
               />
               {/* <p className="text-red-500 font-semibold">
                 {errors?.displayName?.type === 'required' && (
@@ -137,6 +151,7 @@ const CarPartsPurchaseModal = ({ carItemPurchase, setCarItemPurchase }) => {
                 readOnly
                 required
                 // disabled
+                style={{ backgroundColor: '#FFFFFF', color: 'black' }}
               />
               {/* <p className="text-red-500 font-semibold">
                 {errors.email?.type === 'required' && (
@@ -167,6 +182,7 @@ const CarPartsPurchaseModal = ({ carItemPurchase, setCarItemPurchase }) => {
                     message: 'Address can not be more than 30 letters',
                   },
                 })}
+                style={{ backgroundColor: '#FFFFFF', color: 'black' }}
               />
               <p className="text-red-500 font-semibold">
                 {errors.address?.type === 'required' && (
@@ -197,6 +213,7 @@ const CarPartsPurchaseModal = ({ carItemPurchase, setCarItemPurchase }) => {
                   //   message: 'Address can not be more than 30 letters',
                   // },
                 })}
+                style={{ backgroundColor: '#FFFFFF', color: 'black' }}
               />
               <p className="text-red-500 font-semibold">
                 {errors.phone?.type === 'required' && (
@@ -225,6 +242,7 @@ const CarPartsPurchaseModal = ({ carItemPurchase, setCarItemPurchase }) => {
                 readOnly
                 required
                 // disabled
+                style={{ backgroundColor: '#FFFFFF', color: 'black' }}
               />
               {/* <p className="text-red-500 font-semibold">
                 {errors?.itemName?.type === 'required' && (
@@ -260,6 +278,7 @@ const CarPartsPurchaseModal = ({ carItemPurchase, setCarItemPurchase }) => {
                     message: `You can not order above ${avaialableQuantity} pcs`,
                   },
                 })}
+                style={{ backgroundColor: '#FFFFFF', color: 'black' }}
               />
               <p className="text-red-500 font-semibold">
                 {errors.quantity?.type === 'required' && (
@@ -297,6 +316,7 @@ const CarPartsPurchaseModal = ({ carItemPurchase, setCarItemPurchase }) => {
                 readOnly
                 required
                 // disabled
+                style={{ backgroundColor: '#FFFFFF', color: 'black' }}
               />
               <p className="text-red-500 font-semibold">
                 {errors.totalPrice?.type === 'required' && (

@@ -15,7 +15,10 @@ const Footer = () => {
 
   return (
     <div className="mt-auto">
-      <footer className="footer p-10 bg-base-200 text-base-content">
+      <footer
+        className="footer p-10 text-base-content"
+        style={{ backgroundColor: '#F3EEEE', color: 'black' }}
+      >
         <div>
           <img src={footerLogo} alt="carmania" />
         </div>
@@ -50,7 +53,7 @@ const Footer = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control w-72 lg:w-96 mb-4">
               <label className="label">
-                <span className="label-text pr-16">
+                <span className="pr-16">
                   Subscribe to our Newsletter and get bonuses for the next
                   purchase
                 </span>
@@ -63,6 +66,7 @@ const Footer = () => {
                   className="input input-bordered w-full"
                   {...register('subscribe')}
                   required
+                  style={{ backgroundColor: 'white' }}
                 />
                 <input
                   type="submit"
@@ -112,9 +116,12 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      <footer className="footer footer-center p-10 bg-base-200 text-base-content rounded">
+      <footer
+        className="footer footer-center p-10 text-base-content rounded"
+        style={{ backgroundColor: '#F3EEEE', color: 'black' }}
+      >
         <div className="mb-4">
-          <p>Copyright © 2022 - All right reserved by ACME Industries Ltd</p>
+          <p>Copyright © 2022 - All right reserved by CARMANIA</p>
         </div>
       </footer>
     </div>
